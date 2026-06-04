@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>2026世界杯直播 | 美加墨盛会</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-overlay: rgba(0, 0, 0, 0.68);
+      --surface-glass: rgba(10, 14, 23, 0.78);
+      --border-glow: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: #cbd5e6;
+      --accent-gold: #f5b81b;
+      --accent-gold-glow: rgba(245, 184, 27, 0.35);
+      --card-bg: rgba(15, 25, 45, 0.7);
+      --btn-primary: linear-gradient(135deg, #f5b81b, #e09500);
+      --btn-primary-text: #1a1a2e;
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+      --status-live: #10b981;
+      --player-bg: #000000cc;
+      --transition-default: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    [data-theme="light"] {
+      --bg-overlay: rgba(245, 245, 250, 0.72);
+      --surface-glass: rgba(255, 255, 255, 0.88);
+      --border-glow: rgba(0, 0, 0, 0.1);
+      --text-primary: #1e293b;
+      --text-secondary: #334155;
+      --accent-gold: #d97706;
+      --accent-gold-glow: rgba(217, 119, 6, 0.25);
+      --card-bg: rgba(255, 255, 255, 0.78);
+      --btn-primary: linear-gradient(135deg, #eab308, #d97706);
+      --btn-primary-text: #0f172a;
+      --status-live: #059669;
+      --player-bg: #f1f5f9;
+    }
+
+    body {
+      font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      color: var(--text-primary);
+      position: relative;
+      background: #0a0c15;
+      transition: var(--transition-default);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://pan.szfx.top/down.php/b927895b20a5a852649116d5ef3de125.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: brightness(0.92) saturate(1.05);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-overlay);
+      backdrop-filter: blur(2px);
+      z-index: -1;
+      transition: var(--transition-default);
+    }
+
+    .bg-remove-circle {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0,0,0,0.75) 0%, transparent 85%);
+      backdrop-filter: blur(10px);
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 50%;
+      opacity: 0.9;
+      mix-blend-mode: darken;
+    }
+    [data-theme="light"] .bg-remove-circle {
+      background: radial-gradient(circle, rgba(245,245,250,0.9) 0%, transparent 85%);
+      mix-blend-mode: lighten;
+    }
+
+    .app-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 2.5rem;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 30;
+    }
+
+    .lang-selector {
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glow);
+      border-radius: 40px;
+      padding: 0.3rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: var(--transition-default);
+      position: relative;
+    }
+    .lang-selector:hover {
+      background: rgba(245,184,27,0.2);
+      transform: translateY(-1px);
+    }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 5px);
+      right: 0;
+      background: var(--surface-glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glow);
+      border-radius: 1rem;
+      margin-top: 0;
+      padding: 0.4rem 0;
+      min-width: 100px;
+      display: none;
+      flex-direction: column;
+      z-index: 50;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    .lang-selector.active .lang-dropdown {
+      display: flex;
+    }
+    .lang-option {
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .lang-option:hover {
+      background: var(--accent-gold);
+      color: #0f172a;
+    }
+    .theme-toggle-mini {
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glow);
+      border-radius: 40px;
+      padding: 0.3rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: var(--transition-default);
+    }
+    .theme-toggle-mini:hover {
+      background: rgba(245,184,27,0.2);
+      transform: translateY(-1px);
+    }
+
+    .hero-header {
+      text-align: center;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .main-title {
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFD966, #FFA500, #FF4500, #FFD700);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 3px;
+      text-shadow: 0 0 8px rgba(255, 100, 0, 0.6);
+      animation: titleWave 2.5s ease infinite, titleGlow 1.8s ease-in-out infinite alternate;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
+
+    @keyframes titleWave {
+      0% { background-position: 0% 50%; letter-spacing: 2px; }
+      50% { background-position: 100% 50%; letter-spacing: 5px; }
+      100% { background-position: 0% 50%; letter-spacing: 2px; }
+    }
+
+    @keyframes titleGlow {
+      0% { text-shadow: 0 0 5px rgba(255, 69, 0, 0.3), 0 2px 12px rgba(0,0,0,0.4); }
+      100% { text-shadow: 0 0 22px rgba(255, 165, 0, 0.9), 0 4px 20px rgba(0,0,0,0.5); }
+    }
+
+    .social-buttons-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .social-btn {
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glow);
+      border-radius: 60px;
+      padding: 0.55rem 1.8rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition-default);
+      letter-spacing: 0.5px;
+    }
+
+    .social-btn:hover {
+      background: var(--accent-gold);
+      color: #0f172a;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px var(--accent-gold-glow);
+    }
+
+    .sub-footnote {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 1.8rem;
+      margin-top: 1rem;
+    }
+
+    .player-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      border-radius: 2rem;
+      border: 1px solid var(--border-glow);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: var(--transition-default);
+    }
+
+    .channel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid var(--border-glow);
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .channel-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .channel-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      border: 2px solid var(--accent-gold);
+      object-fit: cover;
+    }
+
+    .channel-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .live-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(16, 185, 129, 0.15);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--status-live);
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--status-live);
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.8);}
+      100% { opacity: 1; transform: scale(1.2);}
+    }
+
+    .embedded-player {
+      margin: 1rem 1.5rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      border: 1px solid var(--border-glow);
+      transition: all 0.2s;
+    }
+
+    .embedded-player iframe, 
+    .embedded-player video {
+      width: 100%;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: #0a0c15;
+    }
+
+    .player-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--player-bg);
+      color: var(--text-secondary);
+      gap: 0.8rem;
+      font-weight: 500;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      padding: 0rem 1.5rem 1.5rem 1.5rem;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.8rem 0;
+      border-radius: 60px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: var(--transition-default);
+      background: var(--surface-glass);
+      color: var(--text-primary);
+      border: 1px solid var(--border-glow);
+    }
+
+    .btn-primary {
+      background: var(--btn-primary);
+      color: var(--btn-primary-text);
+      border: none;
+      box-shadow: 0 6px 18px var(--accent-gold-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .channels-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(18px);
+      border-radius: 2rem;
+      border: 1px solid var(--border-glow);
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1.5rem 0.8rem 1.5rem;
+      border-bottom: 1px solid var(--border-glow);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .channels-list {
+      padding: 0.2rem 0;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      padding: 0.7rem 1.2rem;
+      margin: 0.3rem 0.8rem;
+      border-radius: 1.2rem;
+      gap: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .channel-item:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--border-glow);
+      transform: translateX(4px);
+    }
+
+    .channel-item.active {
+      background: var(--accent-gold-glow);
+      border-left: 3px solid var(--accent-gold);
+    }
+
+    .item-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      object-fit: cover;
+      border: 1px solid var(--border-glow);
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .item-status {
+      font-size: 0.7rem;
+      color: var(--status-live);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .play-icon-small {
+      background: var(--accent-gold);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f172a;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .play-icon-small:hover {
+      transform: scale(1.08);
+    }
+
+    .toast-error {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ef4444dd;
+      backdrop-filter: blur(12px);
+      padding: 0.7rem 1.6rem;
+      border-radius: 60px;
+      color: white;
+      font-weight: 500;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .channels-panel::-webkit-scrollbar {
+      width: 4px;
+    }
+    .channels-panel::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    .channels-panel::-webkit-scrollbar-thumb {
+      background: var(--accent-gold);
+      border-radius: 10px;
+    }
+
+    @media (max-width: 950px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .app-container {
+        padding: 0.8rem;
+      }
+      .action-buttons {
+        flex-direction: column;
+      }
+      .social-btn {
+        padding: 0.45rem 1.2rem;
+        font-size: 0.85rem;
+      }
+    }
+    @media (max-width: 560px) {
+      .top-bar {
+        justify-content: flex-end;
+      }
+      .channel-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .embedded-player {
+        margin: 0.8rem;
+      }
+      .action-buttons {
+        padding: 0rem 1rem 1.2rem 1rem;
+      }
+      .social-buttons-bar {
+        gap: 0.8rem;
+      }
+      .social-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+      }
+      .main-title {
+        letter-spacing: 1px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-remove-circle"></div>
+<div class="app-container">
+  <div class="top-bar">
+    <div class="lang-selector" id="langSelectorBtn">
+      <span>🌐</span> <span id="currentLangText">简体</span>
+      <div class="lang-dropdown">
+        <div class="lang-option" data-lang="zh-CN">简体中文</div>
+        <div class="lang-option" data-lang="zh-TW">繁體中文</div>
+        <div class="lang-option" data-lang="en">English</div>
+      </div>
+    </div>
+    <div class="theme-toggle-mini" id="themeToggleBtn">
+      <span id="themeIcon">🌙</span>
+      <span id="themeTextMini">深色</span>
+    </div>
+  </div>
+
+  <div class="hero-header">
+    <h1 class="main-title" id="siteTitle">2026世界杯直播</h1>
+    <div class="social-buttons-bar">
+      <a href="https://t.me/stymei" target="_blank" class="social-btn" rel="noopener noreferrer" id="tgChannelBtn">
+        <span>📢</span> <span id="tgChannelText">TG频道</span>
+      </a>
+      <a href="https://t.me/stymei" target="_blank" class="social-btn" rel="noopener noreferrer" id="serviceBtn">
+        <span>💬</span> <span id="serviceText">客服</span>
+      </a>
+    </div>
+    <div class="sub-footnote">
+      <span id="subNote1">🏆 美加墨 · 三国同心</span>
+      <span id="subNote2">⚡ 全高清嵌入直播</span>
+    </div>
+  </div>
+
+  <div class="main-layout">
+    <div class="player-card">
+      <div class="channel-head">
+        <div class="channel-info">
+          <img id="currentLogoImg" class="channel-avatar" src="" alt="logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 40 40\'%3E%3Crect width=\'40\' height=\'40\' fill=\'%23f5b81b\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'white\'%3E📺%3C/text%3E%3C/svg%3E'">
+          <div>
+            <div class="channel-name" id="currentChannelLabel">选择频道</div>
+            <div class="live-tag"><span class="live-dot"></span> <span id="liveStatusText">LIVE · 就绪</span></div>
+          </div>
+        </div>
+        <div id="streamStateBadge" style="font-size:0.7rem; background:rgba(0,0,0,0.4); padding:0.2rem 0.8rem; border-radius:30px;">📡 内嵌播放器</div>
+      </div>
+
+      <div id="embeddedPlayerContainer" class="embedded-player">
+        <div id="playerPlaceholderElem" class="player-placeholder">
+          <span>⚽🏆</span>
+          <span id="placeholderLine1">点击「立即观看」或频道▶️</span>
+          <span style="font-size:0.8rem;" id="placeholderLine2">内嵌直播将直接播放</span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="playNowBtn" class="btn btn-primary"><span>▶</span> <span id="playBtnText">立即观看</span></button>
+        <button id="refreshListBtn" class="btn btn-secondary"><span>🔄</span> <span id="refreshBtnText">刷新频道</span></button>
+      </div>
+    </div>
+
+    <div class="channels-panel">
+      <div class="panel-header">
+        <span id="channelPanelTitle">📡 直播频道</span>
+        <span id="channelTotalCount">加载中..</span>
+      </div>
+      <div id="channelsContainer" class="channels-list">
+        <div style="text-align:center; padding: 2rem;">获取源中...</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="globalToast" class="toast-error">⚠️ <span id="toastMsg"></span></div>
+
+<script>
+  (function(){
+    const M3U_API_URL = 'https://sports.jsnzkpg.ccwu.cc/api/live.m3u';
+    const FALLBACK_M3U_URL = 'https://sports.jsnzkpg.ccwu.cc/live.m3u';
+    
+    let channels = [];
+    let currentChannel = null;
+    let isLoading = false;
+
+    const currentLogoImg = document.getElementById('currentLogoImg');
+    const currentChannelLabel = document.getElementById('currentChannelLabel');
+    const playNowBtn = document.getElementById('playNowBtn');
+    const refreshListBtn = document.getElementById('refreshListBtn');
+    const channelsContainer = document.getElementById('channelsContainer');
+    const channelTotalCountSpan = document.getElementById('channelTotalCount');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const themeTextMini = document.getElementById('themeTextMini');
+    const themeIconSpan = document.getElementById('themeIcon');
+    const embeddedContainer = document.getElementById('embeddedPlayerContainer');
+    const toastEl = document.getElementById('globalToast');
+    const toastMsgSpan = document.getElementById('toastMsg');
+    const streamStateBadge = document.getElementById('streamStateBadge');
+
+    const langSelectorBtn = document.getElementById('langSelectorBtn');
+    const currentLangTextSpan = document.getElementById('currentLangText');
+    const siteTitle = document.getElementById('siteTitle');
+    const tgChannelText = document.getElementById('tgChannelText');
+    const serviceText = document.getElementById('serviceText');
+    const subNote1 = document.getElementById('subNote1');
+    const subNote2 = document.getElementById('subNote2');
+    const liveStatusTextSpan = document.getElementById('liveStatusText');
+    const placeholderLine1 = document.getElementById('placeholderLine1');
+    const placeholderLine2 = document.getElementById('placeholderLine2');
+    const playBtnText = document.getElementById('playBtnText');
+    const refreshBtnText = document.getElementById('refreshBtnText');
+    const channelPanelTitle = document.getElementById('channelPanelTitle');
+
+    const translations = {
+      'zh-CN': {
+        siteTitle: '2026世界杯直播',
+        tgChannel: 'TG频道',
+        service: '客服',
+        subNote1: '🏆 美加墨 · 三国同心',
+        subNote2: '⚡ 全高清嵌入直播',
+        liveStatus: 'LIVE · 就绪',
+        placeholder1: '点击「立即观看」或频道▶️',
+        placeholder2: '内嵌直播将直接播放',
+        playBtn: '立即观看',
+        refreshBtn: '刷新频道',
+        panelTitle: '📡 直播频道',
+        streamBadge: '📡 内嵌播放器',
+        selectChannel: '选择频道',
+        noChannel: '无频道',
+        liveReady: '🎬 内嵌直播 · 就绪',
+        noSignal: '⚠️ 无信号',
+        loadingChannels: '加载直播源...',
+        noSource: '暂无直播源，请刷新',
+        fetchSuccess: '✅ 加载成功 ({count}个频道)',
+        fetchFail: '加载失败: {msg}',
+        embeddedSupport: '内嵌支持',
+        clickPlay: '点击「立即观看」或频道▶️',
+        directPlay: '内嵌直播将直接播放'
+      },
+      'zh-TW': {
+        siteTitle: '2026世界盃直播',
+        tgChannel: 'TG頻道',
+        service: '客服',
+        subNote1: '🏆 美加墨 · 三國同心',
+        subNote2: '⚡ 全高清嵌入直播',
+        liveStatus: 'LIVE · 就緒',
+        placeholder1: '點擊「立即觀看」或頻道▶️',
+        placeholder2: '內嵌直播將直接播放',
+        playBtn: '立即觀看',
+        refreshBtn: '刷新頻道',
+        panelTitle: '📡 直播頻道',
+        streamBadge: '📡 內嵌播放器',
+        selectChannel: '選擇頻道',
+        noChannel: '無頻道',
+        liveReady: '🎬 內嵌直播 · 就緒',
+        noSignal: '⚠️ 無信號',
+        loadingChannels: '載入直播源...',
+        noSource: '暫無直播源，請刷新',
+        fetchSuccess: '✅ 載入成功 ({count}個頻道)',
+        fetchFail: '載入失敗: {msg}',
+        embeddedSupport: '內嵌支援',
+        clickPlay: '點擊「立即觀看」或頻道▶️',
+        directPlay: '內嵌直播將直接播放'
+      },
+      'en': {
+        siteTitle: '2026 World Cup Live',
+        tgChannel: 'TG Channel',
+        service: 'Support',
+        subNote1: '🏆 USA·CAN·MEX',
+        subNote2: '⚡ Full HD Embedded',
+        liveStatus: 'LIVE · Ready',
+        placeholder1: 'Click "Watch Now" or channel ▶️',
+        placeholder2: 'Embedded stream will play',
+        playBtn: 'Watch Now',
+        refreshBtn: 'Refresh',
+        panelTitle: '📡 Live Channels',
+        streamBadge: '📡 Embedded Player',
+        selectChannel: 'Select Channel',
+        noChannel: 'No Channel',
+        liveReady: '🎬 Embedded Live · Ready',
+        noSignal: '⚠️ No Signal',
+        loadingChannels: 'Loading sources...',
+        noSource: 'No streams, please refresh',
+        fetchSuccess: '✅ Loaded {count} channels',
+        fetchFail: 'Failed: {msg}',
+        embeddedSupport: 'Embedded',
+        clickPlay: 'Click "Watch Now" or ▶️',
+        directPlay: 'Embedded playback'
+      }
+    };
+
+    let currentLang = 'zh-CN';
+
+    function updateUILanguage() {
+      const t = translations[currentLang];
+      if(!t) return;
+      siteTitle.innerText = t.siteTitle;
+      tgChannelText.innerText = t.tgChannel;
+      serviceText.innerText = t.service;
+      subNote1.innerText = t.subNote1;
+      subNote2.innerText = t.subNote2;
+      liveStatusTextSpan.innerText = t.liveStatus;
+      placeholderLine1.innerText = t.placeholder1;
+      placeholderLine2.innerText = t.placeholder2;
+      playBtnText.innerText = t.playBtn;
+      refreshBtnText.innerText = t.refreshBtn;
+      channelPanelTitle.innerText = t.panelTitle;
+      streamStateBadge.innerHTML = t.streamBadge;
+      if(currentChannel) {
+        currentChannelLabel.innerText = currentChannel.title;
+      } else {
+        currentChannelLabel.innerText = t.selectChannel;
+      }
+      if(channels.length === 0 && !isLoading) {
+        channelsContainer.innerHTML = `<div style="text-align:center; padding:2rem;">${t.noSource}</div>`;
+      } else if(channels.length > 0) {
+        renderChannelList();
+      }
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('wc_lang', lang);
+      if(lang === 'zh-CN') currentLangTextSpan.innerText = '简体';
+      else if(lang === 'zh-TW') currentLangTextSpan.innerText = '繁體';
+      else currentLangTextSpan.innerText = 'EN';
+      updateUILanguage();
+    }
+
+    function showToast(msg, isErr=true) {
+      const t = translations[currentLang];
+      let displayMsg = msg;
+      if(msg.includes('✅ 加载成功') && t && t.fetchSuccess) {
+        const match = msg.match(/(\d+)/);
+        if(match) displayMsg = t.fetchSuccess.replace('{count}', match[0]);
+        else displayMsg = t.fetchSuccess.replace('{count}', '?');
+      } else if(msg.includes('加载失败') && t && t.fetchFail) {
+        const errMatch = msg.match(/: (.+)/);
+        if(errMatch) displayMsg = t.fetchFail.replace('{msg}', errMatch[1]);
+        else displayMsg = t.fetchFail.replace('{msg}', '');
+      }
+      toastMsgSpan.innerText = displayMsg;
+      toastEl.style.display = 'flex';
+      setTimeout(()=> toastEl.style.display = 'none', 4000);
+    }
+
+    function guessLogo(channelName) {
+      const name = channelName.toLowerCase();
+      if(name.includes('cctv5')) return 'https://upload.wikimedia.org/wikipedia/zh/4/4e/CCTV-5_logo.png';
+      if(name.includes('咪咕')) return 'https://img.alicdn.com/imgextra/i3/6000000007344/O1CN01KjR1jT24CxJ6XoFz7_!!6000000007344-0-tps-200-200.jpg';
+      if(name.includes('腾讯')) return 'https://mat1.gtimg.com/www/images/qq2012/qqlogo_1x.png';
+      if(name.includes('爱奇艺')) return 'https://www.iqiyipic.com/common/fix/site-v4/iQIYIlogo-white.png';
+      if(name.includes('纬来')) return 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/VL_Sport_logo.svg/200px-VL_Sport_logo.svg.png';
+      return 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 40 40\'%3E%3Crect width=\'40\' height=\'40\' fill=\'%23f5b81b\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'white\'%3E📺%3C/text%3E%3C/svg%3E';
+    }
+
+    function parseM3U(content) {
+      const lines = content.split(/\r?\n/);
+      const result = [];
+      let currentExtinf = null;
+      for(let i=0;i<lines.length;i++){
+        const line = lines[i].trim();
+        if(line.startsWith('#EXTINF:')){
+          const info = line.substring(8);
+          const commaIdx = info.lastIndexOf(',');
+          let title = commaIdx !== -1 ? info.substring(commaIdx+1) : info;
+          title = title.trim() || '未知频道';
+          let logo = null;
+          const logoMatch = info.match(/tvg-logo="([^"]*)"/);
+          if(logoMatch) logo = logoMatch[1];
+          currentExtinf = { title, logo };
+        } else if(line && !line.startsWith('#') && currentExtinf){
+          if(line.startsWith('http')){
+            result.push({
+              title: currentExtinf.title,
+              url: line,
+              logo: currentExtinf.logo || guessLogo(currentExtinf.title)
+            });
+          }
+          currentExtinf = null;
+        }
+      }
+      return result;
+    }
+
+    function sortChannelsWeilaiLast(rawChannels) {
+      const weilaiIndices = [];
+      const others = [];
+      rawChannels.forEach((ch) => {
+        if(ch.title.toLowerCase().includes('纬来') || ch.title.includes('纬來')) {
+          weilaiIndices.push(ch);
+        } else {
+          others.push(ch);
+        }
+      });
+      return [...others, ...weilaiIndices];
+    }
+
+    function embedStreamIntoPlayer(url) {
+      if(!url) {
+        showToast('播放地址无效');
+        return false;
+      }
+      const container = embeddedContainer;
+      if(!container) return false;
+      container.innerHTML = '';
+      const lowerUrl = url.toLowerCase();
+      if(lowerUrl.includes('.m3u8') || lowerUrl.includes('.mp4') || lowerUrl.match(/\.(ts|m3u8)(\?|$)/i)){
+        const videoElement = document.createElement('video');
+        videoElement.controls = true;
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.objectFit = 'contain';
+        videoElement.style.backgroundColor = '#000';
+        const source = document.createElement('source');
+        source.src = url;
+        source.type = lowerUrl.includes('.m3u8') ? 'application/vnd.apple.mpegurl' : 'video/mp4';
+        videoElement.appendChild(source);
+        videoElement.onerror = () => { showToast('视频加载失败，可能是流格式不支持'); };
+        container.appendChild(videoElement);
+        videoElement.play().catch(e=>{ console.warn('自动播放被阻止',e); showToast('请手动点击播放',false); });
+        return true;
+      } 
+      else if(url.includes('.pl') || url.includes('youtube.com/embed') || url.includes('player') || url.includes('iframe')){
+        const iframeElement = document.createElement('iframe');
+        iframeElement.src = url;
+        iframeElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+        iframeElement.allowFullscreen = true;
+        iframeElement.style.width = '100%';
+        iframeElement.style.height = '100%';
+        iframeElement.style.border = 'none';
+        container.appendChild(iframeElement);
+        return true;
+      }
+      else {
+        const fallbackDiv = document.createElement('div');
+        fallbackDiv.className = 'player-placeholder';
+        fallbackDiv.innerHTML = `<span>⚠️ 该链接不支持内嵌播放</span><span style="font-size:0.7rem;">点击下方按钮新窗口观看</span><button id="fallbackOpenBtn" style="margin-top:8px; background:gold; border:none; padding:6px 12px; border-radius:40px;">在新窗口播放</button>`;
+        container.appendChild(fallbackDiv);
+        document.getElementById('fallbackOpenBtn')?.addEventListener('click',()=>{
+          window.open(url, '_blank');
+        });
+        return false;
+      }
+    }
+
+    function showPlaceholder() {
+      const t = translations[currentLang];
+      embeddedContainer.innerHTML = `<div class="player-placeholder"><span>⚽🏆</span><span>${t ? t.clickPlay : '点击「立即观看」或频道▶️'}</span><span style="font-size:0.8rem;">${t ? t.directPlay : '内嵌直播将直接播放'}</span></div>`;
+    }
+
+    function updateCurrentUI(channel) {
+      const t = translations[currentLang];
+      if(channel){
+        currentLogoImg.src = channel.logo;
+        currentChannelLabel.innerText = channel.title;
+        streamStateBadge.innerHTML = t ? t.liveReady : '🎬 内嵌直播 · 就绪';
+        playNowBtn.disabled = false;
+      } else {
+        currentLogoImg.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 40 40\'%3E%3Crect width=\'40\' height=\'40\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' fill=\'white\'%3E📡%3C/text%3E%3C/svg%3E';
+        currentChannelLabel.innerText = t ? t.noChannel : '无频道';
+        playNowBtn.disabled = true;
+        streamStateBadge.innerHTML = t ? t.noSignal : '⚠️ 无信号';
+      }
+    }
+
+    function renderChannelList() {
+      const t = translations[currentLang];
+      if(!channels.length){
+        channelsContainer.innerHTML = `<div style="text-align:center; padding:2rem;">${t ? t.noSource : '暂无直播源，请刷新'}</div>`;
+        channelTotalCountSpan.innerText = '(0)';
+        return;
+      }
+      channelTotalCountSpan.innerText = `(${channels.length})`;
+      const activeId = currentChannel ? currentChannel.url : null;
+      channelsContainer.innerHTML = channels.map((ch,idx)=>`
+        <div class="channel-item ${activeId === ch.url ? 'active' : ''}" data-index="${idx}">
+          <img class="item-logo" src="${ch.logo}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 40 40\'%3E%3Crect width=\'40\' height=\'40\' fill=\'%23f5b81b\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'white\'%3E📺%3C/text%3E%3C/svg%3E'">
+          <div class="item-info">
+            <div class="item-title">${escapeHtml(ch.title)}</div>
+            <div class="item-status"><span class="live-dot"></span> ${t ? t.embeddedSupport : '内嵌支持'}</div>
+          </div>
+          <div class="play-icon-small" data-playidx="${idx}">▶</div>
+        </div>
+      `).join('');
+      document.querySelectorAll('.channel-item').forEach(el=>{
+        const idx = el.dataset.index;
+        if(idx!==undefined){
+          el.addEventListener('click',(e)=>{
+            if(e.target.classList.contains('play-icon-small')) return;
+            selectChannelByIdx(parseInt(idx));
+          });
+          const playBtn = el.querySelector('.play-icon-small');
+          if(playBtn){
+            playBtn.addEventListener('click',(e)=>{
+              e.stopPropagation();
+              const pIdx = playBtn.dataset.playidx;
+              if(pIdx!==undefined) playChannelByIdx(parseInt(pIdx));
+            });
+          }
+        }
+      });
+    }
+
+    function escapeHtml(str){ return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;});}
+
+    function selectChannelByIdx(index){
+      if(channels[index]){
+        currentChannel = channels[index];
+        updateCurrentUI(currentChannel);
+        renderChannelList();
+        showPlaceholder();
+      }
+    }
+
+    function playChannelByIdx(index){
+      if(channels[index]){
+        currentChannel = channels[index];
+        updateCurrentUI(currentChannel);
+        renderChannelList();
+        embedStreamIntoPlayer(currentChannel.url);
+      }
+    }
+
+    async function loadChannelsFromUrl(url){
+      if(isLoading) return;
+      isLoading = true;
+      refreshListBtn.disabled = true;
+      const t = translations[currentLang];
+      channelsContainer.innerHTML = `<div style="text-align:center; padding:2rem;"><div class="live-dot" style="margin:0 auto;"></div> ${t ? t.loadingChannels : '加载直播源...'}</div>`;
+      try{
+        const finalUrl = url + (url.includes('?')?'&':'?') + '_ts='+Date.now();
+        const resp = await fetch(finalUrl, { headers:{'Accept':'application/vnd.apple.mpegurl,*/*'}});
+        if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const text = await resp.text();
+        let parsed = parseM3U(text);
+        if(parsed.length===0) throw new Error('未找到频道');
+        parsed = sortChannelsWeilaiLast(parsed);
+        channels = parsed;
+        if(!currentChannel || !channels.find(c=>c.url === currentChannel?.url)){
+          currentChannel = channels[0];
+        }
+        updateCurrentUI(currentChannel);
+        renderChannelList();
+        showPlaceholder();
+        showToast(`✅ 加载成功 (${channels.length}个频道)`, false);
+      } catch(err){
+        console.error(err);
+        showToast(`加载失败: ${err.message}`);
+        channels = [];
+        currentChannel = null;
+        updateCurrentUI(null);
+        renderChannelList();
+        showPlaceholder();
+      } finally {
+        isLoading = false;
+        refreshListBtn.disabled = false;
+      }
+    }
+
+    function refreshAll(){
+      loadChannelsFromUrl(M3U_API_URL).catch(()=>{ loadChannelsFromUrl(FALLBACK_M3U_URL); });
+    }
+
+    let currentTheme = 'dark';
+    function applyTheme(theme){
+      document.documentElement.setAttribute('data-theme', theme);
+      if(theme === 'light'){
+        themeTextMini.innerText = '浅色';
+        themeIconSpan.innerText = '☀️';
+      } else {
+        themeTextMini.innerText = '深色';
+        themeIconSpan.innerText = '🌙';
+      }
+      currentTheme = theme;
+      localStorage.setItem('wc_theme', theme);
+    }
+    function toggleTheme(){
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+    }
+    const savedTheme = localStorage.getItem('wc_theme');
+    if(savedTheme) applyTheme(savedTheme);
+    else applyTheme('dark');
+
+    const savedLang = localStorage.getItem('wc_lang');
+    if(savedLang && translations[savedLang]) setLanguage(savedLang);
+    else setLanguage('zh-CN');
+
+    langSelectorBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langSelectorBtn.classList.toggle('active');
+    });
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const lang = opt.getAttribute('data-lang');
+        if(lang) setLanguage(lang);
+        langSelectorBtn.classList.remove('active');
+      });
+    });
+    document.addEventListener('click', () => {
+      langSelectorBtn.classList.remove('active');
+    });
+
+    playNowBtn.addEventListener('click', ()=>{
+      if(currentChannel && currentChannel.url){
+        embedStreamIntoPlayer(currentChannel.url);
+      } else {
+        showToast('暂无可用频道');
+      }
+    });
+    refreshListBtn.addEventListener('click', refreshAll);
+    themeToggleBtn.addEventListener('click', toggleTheme);
+
+    refreshAll();
+    setInterval(()=>{
+      if(!isLoading){
+        loadChannelsFromUrl(M3U_API_URL).catch(()=>loadChannelsFromUrl(FALLBACK_M3U_URL));
+      }
+    }, 10 * 60 * 1000);
+  })();
+</script>
+</body>
+</html>
