@@ -186,6 +186,28 @@
       background: rgba(245,184,27,0.2);
       transform: translateY(-1px);
     }
+    .proxy-toggle-mini {
+      background: var(--surface-glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glow);
+      border-radius: 40px;
+      padding: 0.3rem 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: var(--transition-default);
+    }
+    .proxy-toggle-mini.active {
+      background: rgba(245,184,27,0.3);
+      border-color: var(--accent-gold);
+    }
+    .proxy-toggle-mini:hover {
+      background: rgba(245,184,27,0.2);
+    }
 
     .hero-header {
       text-align: center;
@@ -666,6 +688,9 @@
         <div class="lang-option" data-lang="en">English</div>
       </div>
     </div>
+    <div class="proxy-toggle-mini" id="proxyToggleBtn">
+      <span>🔒</span> <span id="proxyToggleText">代理:关</span>
+    </div>
     <div class="theme-toggle-mini" id="themeToggleBtn">
       <span id="themeIcon">🌙</span>
       <span id="themeTextMini">深色</span>
@@ -676,7 +701,7 @@
     <h1 class="main-title" id="siteTitle">2026世界杯直播</h1>
     <div class="social-buttons-bar">
       <a href="https://lin.ee/zMTYL6Z" target="_blank" class="social-btn" rel="noopener noreferrer" id="promoBtn">
-        <span>🎁</span> <span id="promoText">世界盃首存5000送5000</span>
+        <span>🎁</span> <span id="promoText"> 世界盃首存5000送5000 </span>
       </a>
       <a href="https://lin.ee/zMTYL6Z" target="_blank" class="social-btn" rel="noopener noreferrer" id="serviceBtn">
         <span>💬</span> <span id="serviceText">24H客服</span>
@@ -736,11 +761,14 @@
   (function(){
     const M3U_API_URL = 'https://sports.jsnzkpg.ccwu.cc/api/live.m3u';
     const FALLBACK_M3U_URL = 'https://sports.jsnzkpg.ccwu.cc/live.m3u';
+    const PROXY_SERVER = 'https://proxy.api.030101.xyz/';
     
     let channels = [];
     let currentChannel = null;
     let isLoading = false;
     let groupCollapseState = new Map();
+    let currentVideoElement = null;
+    let proxyEnabled = false;
 
     const currentLogoImg = document.getElementById('currentLogoImg');
     const currentChannelLabel = document.getElementById('currentChannelLabel');
@@ -751,6 +779,8 @@
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const themeTextMini = document.getElementById('themeTextMini');
     const themeIconSpan = document.getElementById('themeIcon');
+    const proxyToggleBtn = document.getElementById('proxyToggleBtn');
+    const proxyToggleText = document.getElementById('proxyToggleText');
     const embeddedContainer = document.getElementById('embeddedPlayerContainer');
     const toastEl = document.getElementById('globalToast');
     const toastMsgSpan = document.getElementById('toastMsg');
@@ -759,8 +789,6 @@
     const langSelectorBtn = document.getElementById('langSelectorBtn');
     const currentLangTextSpan = document.getElementById('currentLangText');
     const siteTitle = document.getElementById('siteTitle');
-    const promoText = document.getElementById('promoText');
-    const serviceTextSpan = document.getElementById('serviceText');
     const subNote1 = document.getElementById('subNote1');
     const subNote2 = document.getElementById('subNote2');
     const liveStatusTextSpan = document.getElementById('liveStatusText');
@@ -772,21 +800,21 @@
 
     const translations = {
       'zh-CN': {
-        siteTitle: '2026世界杯直播', promo: '世界盃首存5000送5000', service: '24H客服', subNote1: '🏆 美加墨 · 三国同心', subNote2: '⚡ 全高清嵌入直播',
+        siteTitle: '2026世界杯直播', subNote1: '🏆 美加墨 · 三国同心', subNote2: '⚡ 全高清嵌入直播',
         liveStatus: 'LIVE · 就绪', placeholder1: '点击「立即观看」或频道▶️', placeholder2: '内嵌直播将直接播放', playBtn: '立即观看', refreshBtn: '刷新频道',
         panelTitle: '📡 直播频道', streamBadge: '📡 内嵌播放器', selectChannel: '选择频道', noChannel: '无频道', liveReady: '🎬 内嵌直播 · 就绪', noSignal: '⚠️ 无信号',
         loadingChannels: '加载直播源...', noSource: '暂无直播源，请刷新', fetchSuccess: '✅ 加载成功 ({count}个频道)', fetchFail: '加载失败: {msg}', embeddedSupport: '内嵌支持',
         clickPlay: '点击「立即观看」或频道▶️', directPlay: '内嵌直播将直接播放'
       },
       'zh-TW': {
-        siteTitle: '2026世界盃直播', promo: '世界盃首存5000送5000', service: '24H客服', subNote1: '🏆 美加墨 · 三國同心', subNote2: '⚡ 全高清嵌入直播',
+        siteTitle: '2026世界盃直播', subNote1: '🏆 美加墨 · 三國同心', subNote2: '⚡ 全高清嵌入直播',
         liveStatus: 'LIVE · 就緒', placeholder1: '點擊「立即觀看」或頻道▶️', placeholder2: '內嵌直播將直接播放', playBtn: '立即觀看', refreshBtn: '刷新頻道',
         panelTitle: '📡 直播頻道', streamBadge: '📡 內嵌播放器', selectChannel: '選擇頻道', noChannel: '無頻道', liveReady: '🎬 內嵌直播 · 就緒', noSignal: '⚠️ 無信號',
         loadingChannels: '載入直播源...', noSource: '暫無直播源，請刷新', fetchSuccess: '✅ 載入成功 ({count}個頻道)', fetchFail: '載入失敗: {msg}', embeddedSupport: '內嵌支援',
         clickPlay: '點擊「立即觀看」或頻道▶️', directPlay: '內嵌直播將直接播放'
       },
       'en': {
-        siteTitle: '2026 World Cup Live', promo: 'First Deposit 5000 Get 5000', service: '24H Support', subNote1: '🏆 USA·CAN·MEX', subNote2: '⚡ Full HD Embedded',
+        siteTitle: '2026 World Cup Live', subNote1: '🏆 USA·CAN·MEX', subNote2: '⚡ Full HD Embedded',
         liveStatus: 'LIVE · Ready', placeholder1: 'Click "Watch Now" or channel ▶️', placeholder2: 'Embedded stream will play', playBtn: 'Watch Now', refreshBtn: 'Refresh',
         panelTitle: '📡 Live Channels', streamBadge: '📡 Embedded Player', selectChannel: 'Select Channel', noChannel: 'No Channel', liveReady: '🎬 Embedded Live · Ready', noSignal: '⚠️ No Signal',
         loadingChannels: 'Loading sources...', noSource: 'No streams, please refresh', fetchSuccess: '✅ Loaded {count} channels', fetchFail: 'Failed: {msg}', embeddedSupport: 'Embedded',
@@ -800,8 +828,6 @@
       const t = translations[currentLang];
       if(!t) return;
       siteTitle.innerText = t.siteTitle;
-      promoText.innerText = t.promo;
-      serviceTextSpan.innerText = t.service;
       subNote1.innerText = t.subNote1; subNote2.innerText = t.subNote2; liveStatusTextSpan.innerText = t.liveStatus;
       placeholderLine1.innerText = t.placeholder1; placeholderLine2.innerText = t.placeholder2; playBtnText.innerText = t.playBtn;
       refreshBtnText.innerText = t.refreshBtn; channelPanelTitle.innerText = t.panelTitle; streamStateBadge.innerHTML = t.streamBadge;
@@ -837,6 +863,16 @@
       setTimeout(()=> toastEl.style.display = 'none', 4000);
     }
 
+    function getProxiedUrl(originalUrl) {
+      if(!proxyEnabled) return originalUrl;
+      try {
+        const url = new URL(originalUrl);
+        return PROXY_SERVER + url.host + url.pathname + url.search;
+      } catch(e) {
+        return originalUrl;
+      }
+    }
+
     function extractScoreFromTitle(title) {
       const patterns = [
         /(\d+)\s*[-:]\s*(\d+)/,
@@ -850,7 +886,7 @@
       return null;
     }
 
-    function guessLogo(channelName) {
+    function getDefaultLogo(channelName) {
       const name = channelName.toLowerCase();
       if(name.includes('cctv5')) return 'https://upload.wikimedia.org/wikipedia/zh/4/4e/CCTV-5_logo.png';
       if(name.includes('咪咕')) return 'https://img.alicdn.com/imgextra/i3/6000000007344/O1CN01KjR1jT24CxJ6XoFz7_!!6000000007344-0-tps-200-200.jpg';
@@ -874,7 +910,7 @@
           let logo = null;
           let groupTitle = null;
           const logoMatch = info.match(/tvg-logo="([^"]*)"/);
-          if(logoMatch) logo = logoMatch[1];
+          if(logoMatch && logoMatch[1].startsWith('http')) logo = logoMatch[1];
           const groupMatch = info.match(/group-title="([^"]*)"/);
           if(groupMatch) groupTitle = groupMatch[1];
           currentExtinf = { title, logo, groupTitle };
@@ -883,7 +919,7 @@
             result.push({
               title: currentExtinf.title,
               url: line,
-              logo: currentExtinf.logo || guessLogo(currentExtinf.title),
+              logo: currentExtinf.logo || getDefaultLogo(currentExtinf.title),
               group: currentExtinf.groupTitle || null,
               score: extractScoreFromTitle(currentExtinf.title)
             });
@@ -903,27 +939,80 @@
       return [...others, ...weilai];
     }
 
+    function destroyCurrentPlayer() {
+      if(currentVideoElement) {
+        currentVideoElement.pause();
+        currentVideoElement.src = '';
+        currentVideoElement.load();
+        currentVideoElement = null;
+      }
+      if(embeddedContainer) {
+        const oldVideo = embeddedContainer.querySelector('video');
+        if(oldVideo) {
+          oldVideo.pause();
+          oldVideo.src = '';
+          oldVideo.load();
+        }
+      }
+    }
+
     function embedStreamIntoPlayer(url) {
       if(!url) { showToast('播放地址无效'); return false; }
+      destroyCurrentPlayer();
       const container = embeddedContainer;
       if(!container) return false;
       container.innerHTML = '';
-      const lowerUrl = url.toLowerCase();
+      
+      const finalUrl = getProxiedUrl(url);
+      const lowerUrl = finalUrl.toLowerCase();
+      
       if(lowerUrl.includes('.m3u8') || lowerUrl.includes('.mp4') || lowerUrl.match(/\.(ts|m3u8)(\?|$)/i)){
         const videoElement = document.createElement('video');
-        videoElement.controls = true; videoElement.autoplay = true; videoElement.playsInline = true;
-        videoElement.style.width = '100%'; videoElement.style.height = '100%'; videoElement.style.objectFit = 'contain'; videoElement.style.backgroundColor = '#000';
+        videoElement.controls = true;
+        videoElement.autoplay = true;
+        videoElement.playsInline = true;
+        videoElement.style.width = '100%';
+        videoElement.style.height = '100%';
+        videoElement.style.objectFit = 'contain';
+        videoElement.style.backgroundColor = '#000';
         const source = document.createElement('source');
-        source.src = url; source.type = lowerUrl.includes('.m3u8') ? 'application/vnd.apple.mpegurl' : 'video/mp4';
+        source.src = finalUrl;
+        source.type = lowerUrl.includes('.m3u8') ? 'application/vnd.apple.mpegurl' : 'video/mp4';
         videoElement.appendChild(source);
-        videoElement.onerror = () => { showToast('视频加载失败，可能是流格式不支持'); };
         container.appendChild(videoElement);
-        videoElement.play().catch(e=>{ console.warn('自动播放被阻止',e); showToast('请手动点击播放',false); });
+        currentVideoElement = videoElement;
+        
+        let errorCount = 0;
+        const handleError = () => {
+          errorCount++;
+          if(errorCount <= 2) {
+            showToast(`连接异常，尝试重连 (${errorCount}/2)...`, false);
+            setTimeout(() => {
+              if(videoElement && videoElement.parentNode) {
+                videoElement.load();
+              }
+            }, 2000);
+          } else {
+            showToast('播放源可能已失效，请尝试切换线路', true);
+          }
+        };
+        videoElement.addEventListener('error', handleError);
+        
+        videoElement.play().catch(e => { 
+          console.warn('自动播放被阻止', e); 
+          showToast('请手动点击播放', false);
+          streamStateBadge.innerHTML = '🔊 需手动播放';
+        });
+        
+        const cleanup = () => {
+          videoElement.removeEventListener('error', handleError);
+        };
+        videoElement.addEventListener('play', cleanup, { once: true });
         return true;
       } 
       else if(url.includes('.pl') || url.includes('youtube.com/embed') || url.includes('player') || url.includes('iframe')){
         const iframeElement = document.createElement('iframe');
-        iframeElement.src = url; iframeElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+        iframeElement.src = finalUrl; iframeElement.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
         iframeElement.allowFullscreen = true; iframeElement.style.width = '100%'; iframeElement.style.height = '100%'; iframeElement.style.border = 'none';
         container.appendChild(iframeElement);
         return true;
@@ -933,14 +1022,16 @@
         fallbackDiv.className = 'player-placeholder';
         fallbackDiv.innerHTML = `<span>⚠️ 该链接不支持内嵌播放</span><span style="font-size:0.7rem;">点击下方按钮新窗口观看</span><button id="fallbackOpenBtn" style="margin-top:8px; background:gold; border:none; padding:6px 12px; border-radius:40px;">在新窗口播放</button>`;
         container.appendChild(fallbackDiv);
-        document.getElementById('fallbackOpenBtn')?.addEventListener('click',()=>{ window.open(url, '_blank'); });
+        document.getElementById('fallbackOpenBtn')?.addEventListener('click',()=>{ window.open(finalUrl, '_blank'); });
         return false;
       }
     }
 
     function showPlaceholder() {
+      destroyCurrentPlayer();
       const t = translations[currentLang];
       embeddedContainer.innerHTML = `<div class="player-placeholder"><span>⚽🏆</span><span>${t ? t.clickPlay : '点击「立即观看」或频道▶️'}</span><span style="font-size:0.8rem;">${t ? t.directPlay : '内嵌直播将直接播放'}</span></div>`;
+      currentVideoElement = null;
     }
 
     function updateCurrentUI(channel) {
@@ -1109,7 +1200,24 @@
     }
 
     function refreshAll(){
+      destroyCurrentPlayer();
       loadChannelsFromUrl(M3U_API_URL).catch(()=>{ loadChannelsFromUrl(FALLBACK_M3U_URL); });
+    }
+
+    function toggleProxy() {
+      proxyEnabled = !proxyEnabled;
+      if(proxyEnabled) {
+        proxyToggleText.innerText = '代理:开';
+        proxyToggleBtn.classList.add('active');
+        showToast('已开启代理加速，可能会改善部分源的播放流畅度', false);
+      } else {
+        proxyToggleText.innerText = '代理:关';
+        proxyToggleBtn.classList.remove('active');
+        showToast('已关闭代理，将直连播放源', false);
+      }
+      if(currentVideoElement && currentChannel) {
+        embedStreamIntoPlayer(currentChannel.url);
+      }
     }
 
     let currentTheme = 'dark';
@@ -1133,12 +1241,18 @@
     });
     document.addEventListener('click', () => { langSelectorBtn.classList.remove('active'); });
 
-    playNowBtn.addEventListener('click', ()=>{ if(currentChannel && currentChannel.url) embedStreamIntoPlayer(currentChannel.url); else showToast('暂无可用频道'); });
+    playNowBtn.addEventListener('click', ()=>{ 
+      if(currentChannel && currentChannel.url) embedStreamIntoPlayer(currentChannel.url); 
+      else showToast('暂无可用频道'); 
+    });
     refreshListBtn.addEventListener('click', refreshAll);
     themeToggleBtn.addEventListener('click', toggleTheme);
+    proxyToggleBtn.addEventListener('click', toggleProxy);
 
     refreshAll();
-    setInterval(()=>{ if(!isLoading) loadChannelsFromUrl(M3U_API_URL).catch(()=>loadChannelsFromUrl(FALLBACK_M3U_URL)); }, 10 * 60 * 1000);
+    setInterval(()=>{ 
+      if(!isLoading) loadChannelsFromUrl(M3U_API_URL).catch(()=>loadChannelsFromUrl(FALLBACK_M3U_URL)); 
+    }, 10 * 60 * 1000);
   })();
 </script>
 </body>
