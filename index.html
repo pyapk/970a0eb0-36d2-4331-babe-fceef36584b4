@@ -769,6 +769,10 @@
     let groupCollapseState = new Map();
     let currentVideoElement = null;
     let proxyEnabled = false;
+    let stallRecoveryTimer = null;
+    let errorRecoveryTimer = null;
+    let heartbeatInterval = null;
+    let isRecovering = false;
 
     const currentLogoImg = document.getElementById('currentLogoImg');
     const currentChannelLabel = document.getElementById('currentChannelLabel');
@@ -939,7 +943,14 @@
       return [...others, ...weilai];
     }
 
+    function stopAllRecoveryTimers() {
+      if(stallRecoveryTimer) { clearTimeout(stallRecoveryTimer); stallRecoveryTimer = null; }
+      if(errorRecoveryTimer) { clearTimeout(errorRecoveryTimer); errorRecoveryTimer = null; }
+      if(heartbeatInterval) { clearInterval(heartbeatInterval); heartbeatInterval = null; }
+    }
+
     function destroyCurrentPlayer() {
+      stopAllRecoveryTimers();
       if(currentVideoElement) {
         currentVideoElement.pause();
         currentVideoElement.src = '';
@@ -954,6 +965,50 @@
           oldVideo.load();
         }
       }
+      isRecovering = false;
+    }
+
+    function silentReloadStream() {
+      if(isRecovering) return;
+      if(!currentChannel || !currentChannel.url) return;
+      isRecovering = true;
+      console.log('🔄 无痕自动恢复直播流...');
+      showToast('网络波动，正在自动恢复...', false);
+      const urlToReload = currentChannel.url;
+      destroyCurrentPlayer();
+      setTimeout(() => {
+        embedStreamIntoPlayer(urlToReload);
+        setTimeout(() => { isRecovering = false; }, 3000);
+      }, 500);
+    }
+
+    function setupHeartbeat(videoElement) {
+      let lastReadyState = -1;
+      let stallCount = 0;
+      heartbeatInterval = setInterval(() => {
+        if(!videoElement || !videoElement.parentNode) {
+          if(heartbeatInterval) clearInterval(heartbeatInterval);
+          return;
+        }
+        const currentTime = videoElement.currentTime;
+        const readyState = videoElement.readyState;
+        const networkState = videoElement.networkState;
+        if(readyState < 2 && networkState === 2 && !videoElement.ended && !videoElement.paused) {
+          stallCount++;
+          if(stallCount >= 3) {
+            console.warn('检测到播放卡顿/停滞，触发自动恢复');
+            stallCount = 0;
+            silentReloadStream();
+          }
+        } else {
+          stallCount = 0;
+        }
+        if(videoElement.networkState === 3 && readyState < 1) {
+          console.warn('检测到网络断开/黑屏状态，触发自动恢复');
+          silentReloadStream();
+        }
+        lastReadyState = readyState;
+      }, 8000);
     }
 
     function embedStreamIntoPlayer(url) {
@@ -983,20 +1038,28 @@
         currentVideoElement = videoElement;
         
         let errorCount = 0;
-        const handleError = () => {
+        const handleError = (e) => {
           errorCount++;
-          if(errorCount <= 2) {
+          if(errorCount <= 2 && !isRecovering) {
             showToast(`连接异常，尝试重连 (${errorCount}/2)...`, false);
-            setTimeout(() => {
-              if(videoElement && videoElement.parentNode) {
-                videoElement.load();
+            if(errorRecoveryTimer) clearTimeout(errorRecoveryTimer);
+            errorRecoveryTimer = setTimeout(() => {
+              if(videoElement && videoElement.parentNode && currentChannel) {
+                silentReloadStream();
               }
             }, 2000);
-          } else {
-            showToast('播放源可能已失效，请尝试切换线路', true);
+          } else if(errorCount > 2 && !isRecovering) {
+            showToast('播放源异常，尝试自动切换线路', false);
+            silentReloadStream();
           }
         };
         videoElement.addEventListener('error', handleError);
+        
+        videoElement.addEventListener('canplay', () => {
+          streamStateBadge.innerHTML = '🎬 流畅播放';
+          if(heartbeatInterval) clearInterval(heartbeatInterval);
+          setupHeartbeat(videoElement);
+        });
         
         videoElement.play().catch(e => { 
           console.warn('自动播放被阻止', e); 
@@ -1184,6 +1247,11 @@
         updateCurrentUI(currentChannel);
         renderChannelList();
         showPlaceholder();
+        if(currentChannel && currentChannel.url) {
+          setTimeout(() => {
+            embedStreamIntoPlayer(currentChannel.url);
+          }, 500);
+        }
         showToast(`✅ 加载成功 (${channels.length}个频道)`, false);
       } catch(err){
         console.error(err);
@@ -1216,7 +1284,7 @@
         showToast('已关闭代理，将直连播放源', false);
       }
       if(currentVideoElement && currentChannel) {
-        embedStreamIntoPlayer(currentChannel.url);
+        silentReloadStream();
       }
     }
 
