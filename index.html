@@ -2,2104 +2,677 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no">
-    <title>2026世界杯直播 | 美加墨盛会</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>全民反诈 · 守护平安 | 防范电信网络诈骗宣传</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        :root {
-            --bg-overlay: rgba(0, 0, 0, 0.68);
-            --surface-glass: rgba(10, 14, 23, 0.78);
-            --border-glow: rgba(255, 255, 255, 0.12);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e6;
-            --text-tertiary: #94a3b8;
-            --accent-gold: #f5b81b;
-            --accent-gold-glow: rgba(245, 184, 27, 0.35);
-            --accent-gold-soft: rgba(245, 184, 27, 0.15);
-            --card-bg: rgba(15, 25, 45, 0.7);
-            --card-bg-hover: rgba(20, 32, 55, 0.82);
-            --btn-primary: linear-gradient(135deg, #f5b81b, #e09500);
-            --btn-primary-hover: linear-gradient(135deg, #f7c948, #e8a200);
-            --btn-primary-text: #1a1a2e;
-            --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 12px 28px -8px rgba(0, 0, 0, 0.45);
-            --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.55);
-            --shadow-gold: 0 6px 20px rgba(245, 184, 27, 0.3);
-            --status-live: #10b981;
-            --status-live-glow: rgba(16, 185, 129, 0.4);
-            --player-bg: #000000cc;
-            --transition-fast: all 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-default: all 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-smooth: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-            --radius-xs: 8px;
-            --radius-sm: 12px;
-            --radius-md: 16px;
-            --radius-lg: 22px;
-            --radius-xl: 28px;
-            --radius-full: 60px;
-            --safe-bottom: env(safe-area-inset-bottom, 16px);
-            --safe-top: env(safe-area-inset-top, 0px);
-        }
-
-        [data-theme="light"] {
-            --bg-overlay: rgba(245, 245, 250, 0.7);
-            --surface-glass: rgba(255, 255, 255, 0.86);
-            --border-glow: rgba(0, 0, 0, 0.09);
-            --border-subtle: rgba(0, 0, 0, 0.05);
-            --text-primary: #1e293b;
-            --text-secondary: #334155;
-            --text-tertiary: #64748b;
-            --accent-gold: #d97706;
-            --accent-gold-glow: rgba(217, 119, 6, 0.25);
-            --accent-gold-soft: rgba(217, 119, 6, 0.1);
-            --card-bg: rgba(255, 255, 255, 0.78);
-            --card-bg-hover: rgba(255, 255, 255, 0.9);
-            --btn-primary: linear-gradient(135deg, #eab308, #d97706);
-            --btn-primary-hover: linear-gradient(135deg, #f0c040, #e08a10);
-            --btn-primary-text: #0f172a;
-            --status-live: #059669;
-            --status-live-glow: rgba(5, 150, 105, 0.35);
-            --player-bg: #f1f5f9;
-            --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.08);
-            --shadow-md: 0 12px 28px -8px rgba(0, 0, 0, 0.12);
-            --shadow-lg: 0 24px 48px -12px rgba(0, 0, 0, 0.18);
-            --shadow-gold: 0 6px 20px rgba(217, 119, 6, 0.22);
-        }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
         }
 
         body {
-            font-family: 'Inter', 'PingFang SC', 'SF Pro Display', 'Microsoft YaHei', system-ui, -apple-system, sans-serif;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-            color: var(--text-primary);
-            position: relative;
-            background: #0a0c15;
-            transition: var(--transition-default);
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f0f4ff 0%, #e8edfc 100%);
+            color: #1e2a3e;
             line-height: 1.5;
-            letter-spacing: 0.01em;
-            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://pan.szfx.top/down.php/b927895b20a5a852649116d5ef3de125.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            filter: brightness(0.92) saturate(1.05);
-            z-index: -2;
-            will-change: transform;
+        /* 主容器 */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem;
         }
 
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-overlay);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            z-index: -1;
-            transition: var(--transition-default);
+        /* 头部英雄区 */
+        .hero {
+            background: linear-gradient(135deg, #0a2b4e 0%, #123b6e 100%);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.25);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .bg-remove-circle {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            width: clamp(120px, 20vw, 200px);
-            height: clamp(120px, 20vw, 200px);
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.75) 0%, transparent 85%);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        .hero::before {
+            content: "⚠️";
+            font-size: 220px;
+            opacity: 0.06;
+            position: absolute;
+            bottom: -40px;
+            right: -20px;
             pointer-events: none;
-            z-index: 1;
-            border-radius: 50%;
-            opacity: 0.85;
-            mix-blend-mode: darken;
-        }
-        [data-theme="light"] .bg-remove-circle {
-            background: radial-gradient(circle, rgba(245, 245, 250, 0.9) 0%, transparent 85%);
-            mix-blend-mode: lighten;
+            font-weight: bold;
         }
 
-        .app-container {
+        .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: clamp(0.5rem, 2vw, 1.2rem) clamp(0.6rem, 2.5vw, 1.8rem) clamp(1.5rem, 4vw, 2.8rem);
-            padding-bottom: calc(var(--safe-bottom) + 1.5rem);
         }
 
-        /* ===== 顶部工具栏 ===== */
-        .top-bar {
+        .hero h1 {
+            font-size: 2.8rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.8rem;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            gap: 0.6rem;
-            margin-bottom: 0.4rem;
-            position: relative;
-            z-index: 30;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .top-bar-pill {
-            background: var(--surface-glass);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid var(--border-glow);
-            border-radius: var(--radius-full);
-            padding: 0.35rem 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            cursor: pointer;
-            font-size: 0.73rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            transition: var(--transition-fast);
-            position: relative;
-            white-space: nowrap;
-            user-select: none;
-            touch-action: manipulation;
-            min-height: 36px;
-            letter-spacing: 0.02em;
-        }
-        .top-bar-pill:hover {
-            background: var(--accent-gold-soft);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
-        }
-        .top-bar-pill:active {
-            transform: scale(0.96);
-            transition: transform 0.1s ease;
-        }
-        .top-bar-pill.active-pill {
-            background: rgba(245, 184, 27, 0.28);
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 2px var(--accent-gold-soft);
-        }
-
-        .lang-dropdown {
-            position: absolute;
-            top: calc(100% + 6px);
-            right: 0;
-            background: var(--surface-glass);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid var(--border-glow);
-            border-radius: var(--radius-md);
-            margin-top: 0;
-            padding: 0.35rem 0;
-            min-width: 110px;
-            display: none;
-            flex-direction: column;
-            z-index: 50;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-        }
-        .lang-selector.active .lang-dropdown {
-            display: flex;
-        }
-        .lang-option {
-            padding: 0.5rem 1rem;
-            font-size: 0.78rem;
-            cursor: pointer;
-            transition: background 0.15s ease;
-            white-space: nowrap;
-            color: var(--text-primary);
-            letter-spacing: 0.02em;
-        }
-        .lang-option:hover {
-            background: var(--accent-gold-soft);
-            color: var(--accent-gold);
-        }
-        .lang-option:active {
-            background: var(--accent-gold);
-            color: #0f172a;
-        }
-
-        /* ===== Hero区域 ===== */
-        .hero-header {
-            text-align: center;
-            margin-bottom: clamp(0.8rem, 2vw, 1.4rem);
-            position: relative;
-            padding-top: clamp(0.2rem, 1vw, 0.5rem);
-        }
-
-        .main-title {
-            font-size: clamp(1.8rem, 6vw, 3.6rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #FFD966, #FFA500, #FF6B35, #FFD700);
-            background-size: 300% 300%;
+        .hero h1 span {
+            background: #ffb347;
+            background: linear-gradient(120deg, #ffd966, #ffb347);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: clamp(1px, 0.3vw, 3px);
-            text-shadow: 0 0 8px rgba(255, 100, 0, 0.6);
-            animation: titleWave 3s ease infinite, titleGlow 2s ease-in-out infinite alternate;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-            will-change: background-position;
+            text-shadow: none;
         }
 
-        @keyframes titleWave {
-            0% {
-                background-position: 0% 50%;
-                letter-spacing: 2px;
-            }
-            50% {
-                background-position: 100% 50%;
-                letter-spacing: 5px;
-            }
-            100% {
-                background-position: 0% 50%;
-                letter-spacing: 2px;
-            }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            opacity: 0.9;
+            margin-top: 0.5rem;
         }
 
-        @keyframes titleGlow {
-            0% {
-                text-shadow: 0 0 5px rgba(255, 69, 0, 0.3), 0 2px 12px rgba(0, 0, 0, 0.4);
-            }
-            100% {
-                text-shadow: 0 0 22px rgba(255, 165, 0, 0.9), 0 4px 20px rgba(0, 0, 0, 0.5);
-            }
-        }
-
-        .social-buttons-bar {
+        .badge-group {
             display: flex;
-            justify-content: center;
-            gap: clamp(0.6rem, 1.5vw, 1.2rem);
-            margin-top: 0.3rem;
-            margin-bottom: 0.4rem;
             flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.8rem;
         }
 
-        .social-btn {
-            background: var(--surface-glass);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid var(--border-glow);
-            border-radius: var(--radius-full);
-            padding: 0.5rem 1.6rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-size: clamp(0.78rem, 1.5vw, 0.9rem);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            transition: var(--transition-default);
-            letter-spacing: 0.03em;
-            white-space: nowrap;
-            touch-action: manipulation;
-            min-height: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .social-btn::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: var(--radius-full);
-            background: var(--accent-gold);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-        .social-btn:hover::after {
-            opacity: 1;
-        }
-        .social-btn:hover {
-            color: #0f172a;
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-gold);
-            text-decoration: none;
-        }
-        .social-btn:active {
-            transform: scale(0.95);
-            transition: transform 0.1s ease;
-        }
-
-        .sub-footnote {
-            display: flex;
-            justify-content: center;
-            gap: clamp(0.8rem, 2vw, 1.8rem);
-            margin-top: 0.4rem;
-            font-size: clamp(0.68rem, 1.2vw, 0.78rem);
-            font-weight: 500;
-            color: var(--text-tertiary);
-            flex-wrap: wrap;
-            letter-spacing: 0.03em;
-        }
-
-        /* ===== 主布局 ===== */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 0.85fr;
-            gap: clamp(1rem, 2vw, 2rem);
-            margin-top: clamp(0.6rem, 1.5vw, 1.2rem);
-            align-items: start;
-        }
-
-        /* ===== 播放器卡片 ===== */
-        .player-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-glow);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transition: var(--transition-smooth);
-            position: relative;
-        }
-        .player-card:hover {
-            box-shadow: var(--shadow-lg);
-        }
-
-        .channel-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: clamp(0.7rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
-            background: rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid var(--border-subtle);
-            flex-wrap: wrap;
-            gap: 0.6rem;
-        }
-
-        .channel-info {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .channel-avatar {
-            width: clamp(38px, 5vw, 46px);
-            height: clamp(38px, 5vw, 46px);
-            border-radius: var(--radius-sm);
-            background: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            border: 2px solid var(--accent-gold);
-            object-fit: cover;
-            flex-shrink: 0;
-            box-shadow: 0 0 12px var(--accent-gold-soft);
-        }
-
-        .channel-name {
-            font-weight: 700;
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            letter-spacing: 0.02em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            max-width: 100%;
-        }
-
-        .live-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            background: var(--status-live-glow);
-            padding: 0.25rem 0.9rem;
-            border-radius: var(--radius-full);
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--status-live);
-            letter-spacing: 0.04em;
-            white-space: nowrap;
-        }
-
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            background: var(--status-live);
-            border-radius: 50%;
-            animation: pulse 1.6s infinite;
-            box-shadow: 0 0 6px var(--status-live-glow);
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 0.35;
-                transform: scale(0.75);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.25);
-            }
-            100% {
-                opacity: 0.35;
-                transform: scale(0.75);
-            }
-        }
-
-        .stream-badge {
-            font-size: 0.68rem;
-            background: rgba(0, 0, 0, 0.35);
-            padding: 0.2rem 0.7rem;
-            border-radius: var(--radius-full);
-            white-space: nowrap;
-            letter-spacing: 0.03em;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-subtle);
-        }
-
-        .embedded-player {
-            margin: clamp(0.6rem, 1.5vw, 1rem) clamp(0.8rem, 2vw, 1.5rem);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            background: #000;
-            aspect-ratio: 16 / 9;
-            position: relative;
-            border: 1px solid var(--border-subtle);
-            transition: var(--transition-fast);
-            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.5);
-            min-height: 180px;
-        }
-
-        .embedded-player iframe,
-        .embedded-player video {
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            background: #0a0c15;
-            display: block;
-        }
-
-        .player-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: var(--player-bg);
-            color: var(--text-secondary);
-            gap: 0.6rem;
-            font-weight: 500;
-            text-align: center;
-            padding: 1rem;
-            letter-spacing: 0.02em;
-        }
-        .player-placeholder span:first-child {
-            font-size: 2.5rem;
-            opacity: 0.7;
-        }
-        .player-placeholder .placeholder-hint {
-            font-size: 0.78rem;
-            color: var(--text-tertiary);
-            max-width: 90%;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: clamp(0.6rem, 1.2vw, 1rem);
-            padding: 0rem clamp(0.8rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.5rem);
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            flex: 1;
-            min-width: 100px;
-            padding: 0.75rem 0.5rem;
-            border-radius: var(--radius-full);
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: var(--transition-default);
-            background: var(--surface-glass);
-            color: var(--text-primary);
-            border: 1px solid var(--border-glow);
-            letter-spacing: 0.03em;
-            touch-action: manipulation;
-            min-height: 44px;
-            position: relative;
-            overflow: hidden;
-            user-select: none;
-        }
-        .btn:active {
-            transform: scale(0.94);
-            transition: transform 0.1s ease;
-        }
-
-        .btn-primary {
-            background: var(--btn-primary);
-            color: var(--btn-primary-text);
-            border: none;
-            box-shadow: var(--shadow-gold);
-            font-weight: 800;
-        }
-        .btn-primary:hover {
-            background: var(--btn-primary-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px var(--accent-gold-glow);
-        }
-        .btn-primary:active {
-            transform: scale(0.93);
-        }
-
-        .btn-secondary {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .btn-secondary:hover {
+        .badge {
             background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-            pointer-events: none;
-            filter: grayscale(0.3);
-        }
-
-        /* ===== 频道面板 ===== */
-        .channels-panel {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: var(--radius-xl);
-            border: 1px solid var(--border-glow);
-            padding: 0.8rem 0;
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
-            max-height: clamp(50vh, 65vh, 72vh);
-            overflow-y: auto;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-smooth);
-        }
-        .channels-panel:hover {
-            box-shadow: var(--shadow-lg);
-        }
-
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.4rem 1.3rem 0.7rem 1.3rem;
-            border-bottom: 1px solid var(--border-subtle);
-            font-weight: 700;
-            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-            letter-spacing: 0.03em;
-            position: sticky;
-            top: 0;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 5;
-            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-        }
-        .panel-header .count-badge {
-            background: var(--accent-gold-soft);
-            color: var(--accent-gold);
-            padding: 0.2rem 0.7rem;
-            border-radius: var(--radius-full);
-            font-size: 0.72rem;
-            font-weight: 600;
-        }
-
-        .channels-list {
-            padding: 0.1rem 0;
-        }
-
-        .category-group {
-            margin-bottom: 0.3rem;
-        }
-        .category-header {
-            padding: 0.5rem 1.3rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            background: rgba(0, 0, 0, 0.25);
-            color: var(--accent-gold);
-            letter-spacing: 0.04em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: background 0.2s;
-            user-select: none;
-            touch-action: manipulation;
-            min-height: 36px;
-            position: sticky;
-            top: 52px;
-            z-index: 3;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-        .category-header:hover {
-            background: rgba(245, 184, 27, 0.18);
-        }
-        .category-header:active {
-            background: rgba(245, 184, 27, 0.28);
-        }
-        .category-header .toggle-icon {
-            font-size: 0.65rem;
-            transition: transform 0.25s ease;
-            opacity: 0.7;
-        }
-        .category-header.collapsed .toggle-icon {
-            transform: rotate(-90deg);
-        }
-        .category-channels {
-            overflow: hidden;
-            transition: max-height 0.35s ease-out;
-        }
-        .category-channels.collapsed {
-            max-height: 0 !important;
-            padding: 0;
-            margin: 0;
-        }
-        .channel-item {
-            display: flex;
-            align-items: center;
-            padding: 0.6rem 1rem;
-            margin: 0.2rem 0.7rem;
-            border-radius: var(--radius-md);
-            gap: 0.7rem;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            border: 1px solid transparent;
-            touch-action: manipulation;
-            min-height: 50px;
-            position: relative;
-        }
-        .channel-item:hover {
-            background: var(--card-bg-hover);
-            border-color: var(--border-glow);
-            transform: translateX(3px);
-            box-shadow: var(--shadow-sm);
-        }
-        .channel-item:active {
-            transform: scale(0.97);
-            transition: transform 0.1s ease;
-        }
-        .channel-item.active {
-            background: var(--accent-gold-soft);
-            border-left: 3px solid var(--accent-gold);
-            box-shadow: inset 0 0 0 1px var(--accent-gold-soft);
-        }
-        .channel-item.active .item-title {
-            color: var(--accent-gold);
-        }
-
-        .item-logo {
-            width: clamp(36px, 4.5vw, 44px);
-            height: clamp(36px, 4.5vw, 44px);
-            border-radius: var(--radius-xs);
-            background: #0f172a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            object-fit: cover;
-            border: 1px solid var(--border-subtle);
-            flex-shrink: 0;
-        }
-
-        .item-info {
-            flex: 1;
-            min-width: 0;
-        }
-        .item-title {
-            font-weight: 600;
-            font-size: clamp(0.78rem, 1.3vw, 0.88rem);
-            margin-bottom: 0.15rem;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            letter-spacing: 0.02em;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .score-badge {
-            background: rgba(0, 0, 0, 0.45);
-            padding: 0.1rem 0.4rem;
-            border-radius: var(--radius-full);
-            font-size: 0.65rem;
-            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
-            font-weight: 700;
-            color: var(--accent-gold);
-            white-space: nowrap;
-            letter-spacing: 0.05em;
-        }
-        .item-status {
-            font-size: 0.66rem;
-            color: var(--status-live);
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            letter-spacing: 0.03em;
-        }
-        .item-status .live-dot {
-            width: 5px;
-            height: 5px;
-        }
-
-        .play-icon-small {
-            background: var(--accent-gold);
-            border-radius: 50%;
-            width: clamp(28px, 3.5vw, 34px);
-            height: clamp(28px, 3.5vw, 34px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f172a;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            flex-shrink: 0;
-            touch-action: manipulation;
-            font-size: 0.75rem;
-            box-shadow: 0 2px 8px rgba(245, 184, 27, 0.3);
-        }
-        .play-icon-small:hover {
-            transform: scale(1.12);
-            box-shadow: 0 4px 14px rgba(245, 184, 27, 0.45);
-        }
-        .play-icon-small:active {
-            transform: scale(0.9);
-            transition: transform 0.1s ease;
-        }
-
-        /* ===== 推广Banner ===== */
-        .promo-banner {
-            margin: 0rem clamp(0.8rem, 2vw, 1.5rem) clamp(0.8rem, 2vw, 1.2rem);
-            cursor: pointer;
-            transition: transform 0.25s ease, opacity 0.25s, box-shadow 0.25s;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            display: block;
-            border: 1px solid var(--border-subtle);
-        }
-        .promo-banner:hover {
-            transform: scale(1.02);
-            opacity: 0.92;
-            box-shadow: var(--shadow-md);
-        }
-        .promo-banner:active {
-            transform: scale(0.97);
-        }
-        .promo-banner img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: var(--radius-md);
-        }
-
-        /* ===== Toast ===== */
-        .toast-error {
-            position: fixed;
-            bottom: calc(var(--safe-bottom) + 1.5rem);
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(30, 30, 40, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 0.6rem 1.5rem;
-            border-radius: var(--radius-full);
-            color: #fff;
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            z-index: 200;
-            display: none;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            box-shadow: var(--shadow-lg);
-            letter-spacing: 0.03em;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            max-width: 90vw;
+        }
+
+        /* 统计数据卡片 - 实时反诈成果 */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            justify-content: center;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.2rem;
+            flex: 1;
+            min-width: 160px;
             text-align: center;
-            animation: toastIn 0.35s ease-out;
-        }
-        @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
 
-        /* ===== 滚动条 ===== */
-        .channels-panel::-webkit-scrollbar {
-            width: 5px;
-        }
-        .channels-panel::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 10px;
-            margin: 4px 0;
-        }
-        .channels-panel::-webkit-scrollbar-thumb {
-            background: var(--accent-gold);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-        .channels-panel::-webkit-scrollbar-thumb:hover {
-            background: #f7c948;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
         }
 
-        /* Firefox滚动条 */
-        .channels-panel {
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-gold) rgba(0, 0, 0, 0.15);
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e4b7a;
+            line-height: 1.2;
         }
 
-        /* ===== 响应式 - 平板 ===== */
-        @media (max-width: 1050px) {
-            .main-layout {
-                grid-template-columns: 1fr 0.75fr;
-                gap: 1.2rem;
-            }
-            .channels-panel {
-                max-height: 60vh;
-            }
-            .channel-item {
-                padding: 0.5rem 0.8rem;
-                margin: 0.15rem 0.5rem;
-                gap: 0.5rem;
-            }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #4a627a;
+            margin-top: 0.5rem;
         }
 
-        /* ===== 响应式 - 小屏平板/大手机 ===== */
-        @media (max-width: 850px) {
-            .main-layout {
-                grid-template-columns: 1fr;
-                gap: 1.2rem;
-            }
-            .app-container {
-                padding: 0.5rem 0.6rem 2rem;
-                padding-bottom: calc(var(--safe-bottom) + 2rem);
-            }
-            .channels-panel {
-                max-height: 50vh;
-                border-radius: var(--radius-lg);
-            }
-            .player-card {
-                border-radius: var(--radius-lg);
-            }
-            .channel-head {
-                padding: 0.6rem 1rem;
-            }
-            .embedded-player {
-                margin: 0.5rem 0.6rem;
-                border-radius: var(--radius-md);
-                aspect-ratio: 16/9;
-                min-height: 200px;
-            }
-            .action-buttons {
-                padding: 0rem 0.6rem 1rem;
-                gap: 0.5rem;
-            }
-            .social-btn {
-                padding: 0.4rem 1.1rem;
-                font-size: 0.78rem;
-                min-height: 36px;
-            }
-            .social-buttons-bar {
-                gap: 0.5rem;
-            }
-            .btn {
-                padding: 0.65rem 0.4rem;
-                font-size: 0.82rem;
-                min-height: 42px;
-            }
-            .promo-banner {
-                margin: 0rem 0.6rem 0.8rem;
-            }
-            .channel-item {
-                min-height: 46px;
-                padding: 0.5rem 0.7rem;
-                margin: 0.15rem 0.4rem;
-                border-radius: var(--radius-sm);
-            }
-            .item-logo {
-                width: 34px;
-                height: 34px;
-                border-radius: 8px;
-            }
-            .play-icon-small {
-                width: 28px;
-                height: 28px;
-                font-size: 0.7rem;
-            }
-            .top-bar-pill {
-                padding: 0.3rem 0.65rem;
-                font-size: 0.68rem;
-                min-height: 32px;
-                gap: 0.25rem;
-            }
-            .category-header {
-                padding: 0.45rem 1rem;
-                font-size: 0.75rem;
-            }
-            .panel-header {
-                padding: 0.3rem 1rem 0.6rem;
-                font-size: 0.82rem;
-            }
+        /* 诈骗类型网格 */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
 
-        /* ===== 响应式 - 手机 ===== */
-        @media (max-width: 560px) {
-            .app-container {
-                padding: 0.3rem 0.35rem 1.8rem;
-                padding-bottom: calc(var(--safe-bottom) + 1.8rem);
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #ef4444;
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        .scam-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .scam-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .scam-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 20px 28px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .scam-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .scam-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+
+        .scam-card p {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .warning-tag {
+            display: inline-block;
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* 警示横幅 + 互动测验 */
+        .alert-banner {
+            background: #fffbeb;
+            border: 2px solid #f59e0b;
+            border-radius: 2rem;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+
+        .alert-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: #b45309;
+        }
+
+        .alert-text span {
+            font-size: 2rem;
+        }
+
+        .quiz-section {
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.8rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            flex: 1 0 auto;
+        }
+
+        .quiz-btn:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .quiz-feedback {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 黄金守则 */
+        .rules {
+            background: #0f2b3d;
+            border-radius: 2rem;
+            padding: 2rem;
+            color: white;
+            margin: 2rem 0;
+        }
+
+        .rules h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .rule-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .rule-item {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 1.5rem;
+            padding: 1rem 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 一键举报区域 */
+        .report-card {
+            background: linear-gradient(115deg, #ffffff, #fef9f0);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            text-align: center;
+            border: 1px solid #ffc7a2;
+            margin: 2rem 0;
+        }
+
+        .report-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 14px rgba(220, 38, 38, 0.3);
+            margin-top: 1rem;
+        }
+
+        .report-btn:hover {
+            background: #b91c1c;
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0.5rem;
+            font-size: 0.85rem;
+            color: #4b5563;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 680px) {
+            .hero h1 {
+                font-size: 1.9rem;
             }
-            .top-bar {
-                gap: 0.35rem;
-                margin-bottom: 0.2rem;
-            }
-            .top-bar-pill {
-                padding: 0.28rem 0.55rem;
-                font-size: 0.65rem;
-                min-height: 30px;
-                border-radius: 30px;
-                letter-spacing: 0.01em;
-            }
-            .main-layout {
-                grid-template-columns: 1fr;
-                gap: 0.9rem;
-                margin-top: 0.3rem;
-            }
-            .hero-header {
-                margin-bottom: 0.5rem;
-            }
-            .main-title {
+            .section-title {
                 font-size: 1.6rem;
-                letter-spacing: 1px;
-                margin-bottom: 0.3rem;
             }
-            .social-buttons-bar {
-                gap: 0.4rem;
-                flex-wrap: wrap;
+            .quiz-question {
+                font-size: 1.2rem;
             }
-            .social-btn {
-                padding: 0.35rem 0.85rem;
-                font-size: 0.72rem;
-                min-height: 32px;
-                gap: 0.3rem;
-                letter-spacing: 0.01em;
-            }
-            .sub-footnote {
-                gap: 0.5rem;
-                font-size: 0.65rem;
-            }
-            .player-card {
-                border-radius: var(--radius-lg);
-                border: 1px solid var(--border-glow);
-            }
-            .channel-head {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 0.5rem 0.7rem;
-                gap: 0.4rem;
-            }
-            .channel-info {
-                gap: 0.5rem;
-            }
-            .channel-avatar {
-                width: 34px;
-                height: 34px;
-                border-radius: 10px;
-                border-width: 1.5px;
-            }
-            .channel-name {
-                font-size: 0.9rem;
-            }
-            .live-tag {
-                font-size: 0.62rem;
-                padding: 0.2rem 0.6rem;
-            }
-            .stream-badge {
-                font-size: 0.6rem;
-                padding: 0.15rem 0.5rem;
-            }
-            .embedded-player {
-                margin: 0.35rem;
-                border-radius: var(--radius-sm);
-                aspect-ratio: 16/9;
-                min-height: 190px;
-            }
-            .action-buttons {
-                flex-direction: column;
-                padding: 0rem 0.5rem 0.8rem;
-                gap: 0.4rem;
-            }
-            .btn {
-                padding: 0.6rem 0.3rem;
-                font-size: 0.8rem;
-                min-height: 44px;
-                border-radius: 40px;
-            }
-            .promo-banner {
-                margin: 0rem 0.4rem 0.7rem;
-                border-radius: var(--radius-sm);
-            }
-            .promo-banner img {
-                border-radius: var(--radius-sm);
-            }
-            .channels-panel {
-                max-height: 45vh;
-                border-radius: var(--radius-lg);
-                padding: 0.5rem 0;
-            }
-            .panel-header {
-                padding: 0.25rem 0.8rem 0.5rem;
-                font-size: 0.78rem;
-                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-            }
-            .category-header {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.7rem;
-                min-height: 32px;
-                top: 44px;
-            }
-            .channel-item {
-                min-height: 44px;
-                padding: 0.45rem 0.55rem;
-                margin: 0.12rem 0.3rem;
-                border-radius: 10px;
-                gap: 0.45rem;
-            }
-            .item-logo {
-                width: 30px;
-                height: 30px;
-                border-radius: 7px;
-            }
-            .item-title {
-                font-size: 0.74rem;
-            }
-            .item-status {
-                font-size: 0.6rem;
-            }
-            .play-icon-small {
-                width: 26px;
-                height: 26px;
-                font-size: 0.65rem;
-                border-radius: 50%;
-            }
-            .score-badge {
-                font-size: 0.6rem;
-                padding: 0.08rem 0.3rem;
-            }
-            .toast-error {
-                bottom: calc(var(--safe-bottom) + 1rem);
-                padding: 0.5rem 1.1rem;
-                font-size: 0.72rem;
-                max-width: 88vw;
-                border-radius: 40px;
-            }
-            .player-placeholder span:first-child {
-                font-size: 2rem;
-            }
-            .player-placeholder .placeholder-hint {
-                font-size: 0.7rem;
-            }
-        }
-
-        /* ===== 响应式 - 超小屏手机 ===== */
-        @media (max-width: 380px) {
-            .main-title {
-                font-size: 1.35rem;
-            }
-            .social-btn {
-                padding: 0.3rem 0.6rem;
-                font-size: 0.68rem;
-                min-height: 28px;
-            }
-            .embedded-player {
-                min-height: 160px;
-                margin: 0.2rem;
-            }
-            .btn {
-                font-size: 0.75rem;
-                min-height: 40px;
-                padding: 0.5rem 0.2rem;
-            }
-            .channel-item {
-                min-height: 40px;
-                padding: 0.35rem 0.4rem;
-                margin: 0.1rem 0.2rem;
-            }
-            .item-logo {
-                width: 26px;
-                height: 26px;
-            }
-            .play-icon-small {
-                width: 24px;
-                height: 24px;
-                font-size: 0.6rem;
-            }
-            .item-title {
-                font-size: 0.7rem;
-            }
-            .top-bar-pill {
-                padding: 0.22rem 0.45rem;
-                font-size: 0.6rem;
-                min-height: 27px;
-            }
-        }
-
-        /* ===== 移动端横屏优化 ===== */
-        @media (max-width: 850px) and (orientation: landscape) {
-            .main-layout {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-            .channels-panel {
-                max-height: 55vh;
-            }
-            .embedded-player {
-                min-height: 150px;
-            }
-            .action-buttons {
-                flex-direction: row;
-            }
-        }
-
-        /* ===== 移动端安全区域适配 ===== */
-        @supports(padding-bottom: env(safe-area-inset-bottom)) {
-            .app-container {
-                padding-bottom: calc(env(safe-area-inset-bottom) + 1.5rem);
-            }
-            .toast-error {
-                bottom: calc(env(safe-area-inset-bottom) + 1.5rem);
-            }
-            @media (max-width: 560px) {
-                .app-container {
-                    padding-bottom: calc(env(safe-area-inset-bottom) + 1.2rem);
-                }
-                .toast-error {
-                    bottom: calc(env(safe-area-inset-bottom) + 0.8rem);
-                }
+            .container {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-remove-circle"></div>
-    <div class="app-container">
-        <div class="top-bar">
-            <div class="lang-selector top-bar-pill" id="langSelectorBtn">
-                <span>🌐</span> <span id="currentLangText">简体</span>
-                <div class="lang-dropdown">
-                    <div class="lang-option" data-lang="zh-CN">简体中文</div>
-                    <div class="lang-option" data-lang="zh-TW">繁體中文</div>
-                    <div class="lang-option" data-lang="en">English</div>
-                </div>
-            </div>
-            <div class="top-bar-pill" id="proxyToggleBtn">
-                <span>🔒</span> <span id="proxyToggleText">代理:关</span>
-            </div>
-            <div class="top-bar-pill" id="themeToggleBtn">
-                <span id="themeIcon">🌙</span>
-                <span id="themeTextMini">深色</span>
-            </div>
-        </div>
 
-        <div class="hero-header">
-            <h1 class="main-title" id="siteTitle">2026世界杯直播</h1>
-            <div class="social-buttons-bar">
-                <a href="https://lin.ee/zMTYL6Z" target="_blank" class="social-btn" rel="noopener noreferrer" id="promoBtn">
-                    <span>🎁</span> <span id="promoText"> 世界盃首存5000送5000 </span>
-                </a>
-                <a href="https://lin.ee/zMTYL6Z" target="_blank" class="social-btn" rel="noopener noreferrer" id="serviceBtn">
-                    <span>💬</span> <span id="serviceText">24H客服</span>
-                </a>
-            </div>
-            <div class="sub-footnote">
-                <span id="subNote1">🏆 美加墨 · 三国同心</span>
-                <span id="subNote2">⚡ 全高清嵌入直播</span>
-            </div>
-        </div>
-
-        <div class="main-layout">
-            <div class="player-card">
-                <div class="channel-head">
-                    <div class="channel-info">
-                        <img id="currentLogoImg" class="channel-avatar" src="" alt="logo"
-                        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 fill=%27%23f5b81b%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27white%27%3E📺%3C/text%3E%3C/svg%3E'">
-                        <div>
-                            <div class="channel-name" id="currentChannelLabel">选择频道</div>
-                            <div class="live-tag"><span class="live-dot"></span> <span id="liveStatusText">LIVE · 就绪</span></div>
-                        </div>
-                    </div>
-                    <div id="streamStateBadge" class="stream-badge">📡 内嵌播放器</div>
-                </div>
-
-                <div id="embeddedPlayerContainer" class="embedded-player">
-                    <div id="playerPlaceholderElem" class="player-placeholder">
-                        <span>⚽🏆</span>
-                        <span id="placeholderLine1">点击「立即观看」或频道▶️</span>
-                        <span class="placeholder-hint" id="placeholderLine2">内嵌直播将直接播放</span>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button id="playNowBtn" class="btn btn-primary"><span>▶</span> <span id="playBtnText">立即观看</span></button>
-                    <button id="refreshListBtn" class="btn btn-secondary"><span>🔄</span> <span id="refreshBtnText">刷新频道</span></button>
-                </div>
-
-                <a href="https://promo.jx528.com?a=x&c=85844069" target="_blank" rel="noopener noreferrer" class="promo-banner">
-                    <img src="https://mpimg.cn/view.php/95b032ce3816028e4c0a4eb351fd45de.png" alt="推广 banner" loading="lazy">
-                </a>
-            </div>
-
-            <div class="channels-panel">
-                <div class="panel-header">
-                    <span id="channelPanelTitle">📡 直播频道</span>
-                    <span class="count-badge" id="channelTotalCount">加载中..</span>
-                </div>
-                <div id="channelsContainer" class="channels-list">
-                    <div style="text-align:center; padding: 2rem;">获取源中...</div>
-                </div>
+<div class="container">
+    <!-- 头部宣传区 -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>
+                🛡️ 全民反诈 · 
+                <span>警惕每一分陷阱</span>
+            </h1>
+            <p>不轻信 · 不透露 · 不转账 · 多核实 —— 守护您的钱袋子和信息安全</p>
+            <div class="badge-group">
+                <div class="badge">📞 96110 反诈专线</div>
+                <div class="badge">📱 国家反诈中心APP</div>
+                <div class="badge">⚡ 预警劝阻进行中</div>
             </div>
         </div>
     </div>
-    <div id="globalToast" class="toast-error">⚠️ <span id="toastMsg"></span></div>
 
-    <script>
-        (function() {
-            const M3U_API_URL = 'https://sports.jsnzkpg.ccwu.cc/api/live.m3u';
-            const FALLBACK_M3U_URL = 'https://sports.jsnzkpg.ccwu.cc/live.m3u';
-            const PROXY_SERVER = 'https://proxy.api.030101.xyz/';
+    <!-- 反诈实时数据 (模拟动态计数) -->
+    <div class="stats-grid" id="statsArea">
+        <div class="stat-card">
+            <div class="stat-number" id="alertCount">1,284,390</div>
+            <div class="stat-label">🚨 拦截诈骗预警(次)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="saveMoney">¥3.26亿</div>
+            <div class="stat-label">💰 避免损失金额</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="caseDrop">−37%</div>
+            <div class="stat-label">📉 同比电诈案件下降</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">24h</div>
+            <div class="stat-label">⏱️ 全天候守护响应</div>
+        </div>
+    </div>
 
-            let channels = [];
-            let currentChannel = null;
-            let isLoading = false;
-            let groupCollapseState = new Map();
-            let currentVideoElement = null;
-            let proxyEnabled = false;
-            let stallRecoveryTimer = null;
-            let errorRecoveryTimer = null;
-            let heartbeatInterval = null;
-            let isRecovering = false;
-            let userHasInteracted = false;
-            let pendingUnmuteVideo = null;
+    <!-- 高发诈骗类型 展示区 -->
+    <h2 class="section-title">🔍 常见诈骗套路揭秘</h2>
+    <div class="scam-grid" id="scamGrid">
+        <!-- 数据由js动态生成也可，但直接写在html便于理解，同时保留js动态效果 -->
+    </div>
 
-            const isMobileDevice = () => window.innerWidth < 850;
-            const isSmallScreen = () => window.innerWidth < 560;
+    <!-- 动态警示横幅 + 互动测试部分 -->
+    <div class="alert-banner" id="dynamicAlert">
+        <div class="alert-text">
+            <span>⚠️</span> 最新预警: 近期"百万保障"到期续费骗局高发！凡自称客服说关闭服务的都是诈骗！
+        </div>
+        <div style="font-size:0.85rem; background:#fde68a; padding:4px 12px; border-radius:40px;">点击测试防骗意识 →</div>
+    </div>
 
-            const currentLogoImg = document.getElementById('currentLogoImg');
-            const currentChannelLabel = document.getElementById('currentChannelLabel');
-            const playNowBtn = document.getElementById('playNowBtn');
-            const refreshListBtn = document.getElementById('refreshListBtn');
-            const channelsContainer = document.getElementById('channelsContainer');
-            const channelTotalCountSpan = document.getElementById('channelTotalCount');
-            const themeToggleBtn = document.getElementById('themeToggleBtn');
-            const themeTextMini = document.getElementById('themeTextMini');
-            const themeIconSpan = document.getElementById('themeIcon');
-            const proxyToggleBtn = document.getElementById('proxyToggleBtn');
-            const proxyToggleText = document.getElementById('proxyToggleText');
-            const embeddedContainer = document.getElementById('embeddedPlayerContainer');
-            const toastEl = document.getElementById('globalToast');
-            const toastMsgSpan = document.getElementById('toastMsg');
-            const streamStateBadge = document.getElementById('streamStateBadge');
-            const langSelectorBtn = document.getElementById('langSelectorBtn');
-            const currentLangTextSpan = document.getElementById('currentLangText');
-            const siteTitle = document.getElementById('siteTitle');
-            const subNote1 = document.getElementById('subNote1');
-            const subNote2 = document.getElementById('subNote2');
-            const liveStatusTextSpan = document.getElementById('liveStatusText');
-            const placeholderLine1 = document.getElementById('placeholderLine1');
-            const placeholderLine2 = document.getElementById('placeholderLine2');
-            const playBtnText = document.getElementById('playBtnText');
-            const refreshBtnText = document.getElementById('refreshBtnText');
-            const channelPanelTitle = document.getElementById('channelPanelTitle');
+    <!-- 反诈小测验 加强互动记忆 -->
+    <div class="quiz-section">
+        <div class="quiz-question">❓ 防骗测试：接到自称“电商客服”说您购买的商品有质量问题，要给您三倍退款，但需要您提供短信验证码。您应该？</div>
+        <div class="quiz-options">
+            <button class="quiz-btn" data-answer="correct">立即提供验证码以便快速退款</button>
+            <button class="quiz-btn" data-answer="wrong">挂断电话，通过官方APP或网站联系核实</button>
+            <button class="quiz-btn" data-answer="wrong">添加客服QQ私下办理</button>
+            <button class="quiz-btn" data-answer="warning">相信对方并点击链接填写银行卡</button>
+        </div>
+        <div class="quiz-feedback" id="quizFeedback">✨ 点击选项，检验你的反诈能力！</div>
+    </div>
 
-            const translations = {
-                'zh-CN': {
-                    siteTitle: '2026世界杯直播',
-                    subNote1: '🏆 美加墨 · 三国同心',
-                    subNote2: '⚡ 全高清嵌入直播',
-                    liveStatus: 'LIVE · 就绪',
-                    placeholder1: '点击「立即观看」或频道▶️',
-                    placeholder2: '内嵌直播将直接播放',
-                    playBtn: '立即观看',
-                    refreshBtn: '刷新频道',
-                    panelTitle: '📡 直播频道',
-                    streamBadge: '📡 内嵌播放器',
-                    selectChannel: '选择频道',
-                    noChannel: '无频道',
-                    liveReady: '🎬 内嵌直播 · 就绪',
-                    noSignal: '⚠️ 无信号',
-                    loadingChannels: '加载直播源...',
-                    noSource: '暂无直播源，请刷新',
-                    fetchSuccess: '✅ 加载成功 ({count}个频道)',
-                    fetchFail: '加载失败: {msg}',
-                    embeddedSupport: '内嵌支持',
-                    clickPlay: '点击「立即观看」或频道▶️',
-                    directPlay: '内嵌直播将直接播放',
-                    streamSmooth: '🎬 流畅播放',
-                    needManualPlay: '🔊 需手动播放',
-                    recovering: '网络波动，正在自动恢复...',
-                    proxyOn: '代理:开',
-                    proxyOff: '代理:关',
-                    proxyOnMsg: '已开启代理加速，可能会改善部分源的播放流畅度',
-                    proxyOffMsg: '已关闭代理，将直连播放源',
-                    tapUnmute: '📱 点击屏幕任意位置解锁声音',
-                },
-                'zh-TW': {
-                    siteTitle: '2026世界盃直播',
-                    subNote1: '🏆 美加墨 · 三國同心',
-                    subNote2: '⚡ 全高清嵌入直播',
-                    liveStatus: 'LIVE · 就緒',
-                    placeholder1: '點擊「立即觀看」或頻道▶️',
-                    placeholder2: '內嵌直播將直接播放',
-                    playBtn: '立即觀看',
-                    refreshBtn: '刷新頻道',
-                    panelTitle: '📡 直播頻道',
-                    streamBadge: '📡 內嵌播放器',
-                    selectChannel: '選擇頻道',
-                    noChannel: '無頻道',
-                    liveReady: '🎬 內嵌直播 · 就緒',
-                    noSignal: '⚠️ 無信號',
-                    loadingChannels: '載入直播源...',
-                    noSource: '暫無直播源，請刷新',
-                    fetchSuccess: '✅ 載入成功 ({count}個頻道)',
-                    fetchFail: '載入失敗: {msg}',
-                    embeddedSupport: '內嵌支援',
-                    clickPlay: '點擊「立即觀看」或頻道▶️',
-                    directPlay: '內嵌直播將直接播放',
-                    streamSmooth: '🎬 流暢播放',
-                    needManualPlay: '🔊 需手動播放',
-                    recovering: '網路波動，正在自動恢復...',
-                    proxyOn: '代理:開',
-                    proxyOff: '代理:關',
-                    proxyOnMsg: '已開啟代理加速，可能會改善部分源的播放流暢度',
-                    proxyOffMsg: '已關閉代理，將直連播放源',
-                    tapUnmute: '📱 點擊螢幕任意位置解鎖聲音',
-                },
-                'en': {
-                    siteTitle: '2026 World Cup Live',
-                    subNote1: '🏆 USA·CAN·MEX',
-                    subNote2: '⚡ Full HD Embedded',
-                    liveStatus: 'LIVE · Ready',
-                    placeholder1: 'Click "Watch Now" or channel ▶️',
-                    placeholder2: 'Embedded stream will play',
-                    playBtn: 'Watch Now',
-                    refreshBtn: 'Refresh',
-                    panelTitle: '📡 Live Channels',
-                    streamBadge: '📡 Embedded Player',
-                    selectChannel: 'Select Channel',
-                    noChannel: 'No Channel',
-                    liveReady: '🎬 Embedded Live · Ready',
-                    noSignal: '⚠️ No Signal',
-                    loadingChannels: 'Loading sources...',
-                    noSource: 'No streams, please refresh',
-                    fetchSuccess: '✅ Loaded {count} channels',
-                    fetchFail: 'Failed: {msg}',
-                    embeddedSupport: 'Embedded',
-                    clickPlay: 'Click "Watch Now" or ▶️',
-                    directPlay: 'Embedded playback',
-                    streamSmooth: '🎬 Streaming Smoothly',
-                    needManualPlay: '🔊 Tap to Play',
-                    recovering: 'Network fluctuation, auto-recovering...',
-                    proxyOn: 'Proxy:ON',
-                    proxyOff: 'Proxy:OFF',
-                    proxyOnMsg: 'Proxy enabled, may improve streaming quality',
-                    proxyOffMsg: 'Proxy disabled, direct connection',
-                    tapUnmute: '📱 Tap anywhere to unmute',
+    <!-- 防骗黄金守则 -->
+    <div class="rules">
+        <h3>🔒 防骗「三不一多」黄金守则</h3>
+        <div class="rule-list">
+            <div class="rule-item">❌ 未知链接不点击</div>
+            <div class="rule-item">🔐 个人信息不透露</div>
+            <div class="rule-item">📞 陌生来电不轻信</div>
+            <div class="rule-item">💸 转账汇款多核实</div>
+            <div class="rule-item">📲 下载国家反诈中心APP</div>
+            <div class="rule-item">🆘 96110 来电必接听</div>
+        </div>
+    </div>
+
+    <!-- 举报与求助模块 -->
+    <div class="report-card">
+        <div style="font-size: 2rem;">🚔</div>
+        <h3 style="margin-bottom: 10px;">遭遇诈骗或可疑情况？</h3>
+        <p>立即保留证据，拨打110或反诈专线96110，并举报至国家反诈平台。</p>
+        <button class="report-btn" id="reportBtn">📢 一键举报指引 / 模拟举报提醒</button>
+        <p style="margin-top: 12px; font-size: 0.8rem; color: gray;">⚠️ 模拟提示: 本页面为宣传公益用途，真实举报请拨打官方电话。</p>
+    </div>
+
+    <footer>
+        <p>© 全民反诈 你我同行 | 提高防范意识 拒绝上当受骗 | 公益宣传页面 · 所有数据均为示意提升安全意识</p>
+    </footer>
+</div>
+
+<script>
+    // ------------------------------
+    // 1. 诈骗类型数据集 (用于展示)
+    const scamData = [
+        { icon: "📞", title: "冒充公检法诈骗", desc: "谎称涉嫌洗钱/犯罪，要求资金转入‘安全账户’审查。", color: "#dc2626", tag: "高危" },
+        { icon: "💸", title: "刷单返利诈骗", desc: "前期小额返利骗取信任，后续诱导大额垫付后拉黑。", color: "#f97316", tag: "高发" },
+        { icon: "💕", title: "杀猪盘 - 虚假投资", desc: "伪装高富帅/白富美，诱导赌博/虚假理财，卷款消失。", color: "#e11d48", tag: "情感陷阱" },
+        { icon: "🎁", title: "虚假贷款诈骗", desc: "低门槛放贷，以解冻费/保证金名义要求先转账。", color: "#2563eb", tag: "套路贷" },
+        { icon: "🛒", title: "冒充电商客服退款", desc: "主动理赔，通过钓鱼链接或二维码骗取资金。", color: "#7c3aed", tag: "钓鱼" },
+        { icon: "🎫", title: "虚假中奖/奖学金", desc: "通知中奖但需缴纳税费/手续费，骗取转账。", color: "#db2777", tag: "利诱" }
+    ];
+
+    // 渲染诈骗卡片
+    function renderScamCards() {
+        const grid = document.getElementById('scamGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        scamData.forEach(scam => {
+            const card = document.createElement('div');
+            card.className = 'scam-card';
+            card.style.borderLeftColor = scam.color;
+            card.innerHTML = `
+                <div class="scam-icon">${scam.icon}</div>
+                <h3>${scam.title}</h3>
+                <p>${scam.desc}</p>
+                <div class="warning-tag">⚠️ ${scam.tag}</div>
+            `;
+            // 增加点击展示更详细说明的交互
+            card.addEventListener('click', () => {
+                alert(`【反诈提醒】${scam.title}\n${scam.desc}\n\n防范要点：绝不向陌生账户转账，多方核实身份！`);
+            });
+            grid.appendChild(card);
+        });
+    }
+
+    // 2. 动态数据更新 —— 模拟实时滚动计数的反诈数据 (提升真实感)
+    function animateNumber(element, start, end, suffix = '', isMoney = false) {
+        let current = start;
+        const step = Math.ceil((end - start) / 60);
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= end) {
+                current = end;
+                clearInterval(timer);
+            }
+            let displayValue;
+            if (isMoney) {
+                let val = (current / 100000000).toFixed(2);
+                displayValue = `¥${val}亿`;
+            } else {
+                displayValue = current.toLocaleString();
+            }
+            if (element) element.innerText = displayValue + suffix;
+        }, 25);
+    }
+
+    // 设置数据展示 (起始值->目标值)
+    function initStatsAnimation() {
+        const alertEl = document.getElementById('alertCount');
+        const moneyEl = document.getElementById('saveMoney');
+        const dropEl = document.getElementById('caseDrop');
+        if (alertEl) {
+            // 从 110万滚动到 132万左右
+            animateNumber(alertEl, 1100000, 1348290, '');
+        }
+        if (moneyEl) {
+            // 从2.1亿滚动到3.34亿  but 最终显示3.26亿左右
+            let moneyTarget = 326000000;
+            let startMoney = 210000000;
+            let currentMoney = startMoney;
+            const stepMoney = Math.ceil((moneyTarget - startMoney) / 55);
+            const timerMoney = setInterval(() => {
+                currentMoney += stepMoney;
+                if (currentMoney >= moneyTarget) {
+                    currentMoney = moneyTarget;
+                    clearInterval(timerMoney);
                 }
-            };
+                const y = (currentMoney / 100000000).toFixed(2);
+                if (moneyEl) moneyEl.innerText = `¥${y}亿`;
+            }, 30);
+        }
+        if (dropEl) {
+            setTimeout(() => {
+                if (dropEl) dropEl.innerText = '−37%';
+            }, 100);
+            dropEl.style.transition = 'all 0.3s';
+        }
+    }
 
-            let currentLang = 'zh-CN';
-
-            function updateUILanguage() {
-                const t = translations[currentLang];
-                if (!t) return;
-                siteTitle.innerText = t.siteTitle;
-                subNote1.innerText = t.subNote1;
-                subNote2.innerText = t.subNote2;
-                liveStatusTextSpan.innerText = t.liveStatus;
-                placeholderLine1.innerText = t.placeholder1;
-                placeholderLine2.innerText = t.placeholder2;
-                playBtnText.innerText = t.playBtn;
-                refreshBtnText.innerText = t.refreshBtn;
-                channelPanelTitle.innerText = t.panelTitle;
-                streamStateBadge.innerHTML = t.streamBadge;
-                proxyToggleText.innerText = proxyEnabled ? t.proxyOn : t.proxyOff;
-                if (currentChannel) currentChannelLabel.innerText = currentChannel.title;
-                else currentChannelLabel.innerText = t.selectChannel;
-                if (channels.length === 0 && !isLoading) channelsContainer.innerHTML =
-                    `<div style="text-align:center; padding:2rem;">${t.noSource}</div>`;
-                else if (channels.length > 0) renderChannelList();
-            }
-
-            function setLanguage(lang) {
-                currentLang = lang;
-                localStorage.setItem('wc_lang', lang);
-                if (lang === 'zh-CN') currentLangTextSpan.innerText = '简体';
-                else if (lang === 'zh-TW') currentLangTextSpan.innerText = '繁體';
-                else currentLangTextSpan.innerText = 'EN';
-                updateUILanguage();
-            }
-
-            function showToast(msg, isErr = true) {
-                const t = translations[currentLang];
-                let displayMsg = msg;
-                if (msg.includes('✅ 加载成功') && t && t.fetchSuccess) {
-                    const match = msg.match(/(\d+)/);
-                    if (match) displayMsg = t.fetchSuccess.replace('{count}', match[0]);
-                    else displayMsg = t.fetchSuccess.replace('{count}', '?');
-                } else if (msg.includes('加载失败') && t && t.fetchFail) {
-                    const errMatch = msg.match(/: (.+)/);
-                    if (errMatch) displayMsg = t.fetchFail.replace('{msg}', errMatch[1]);
-                    else displayMsg = t.fetchFail.replace('{msg}', '');
-                } else if (msg.includes('网络波动') && t && t.recovering) {
-                    displayMsg = t.recovering;
-                } else if (msg.includes('已开启代理') && t && t.proxyOnMsg) {
-                    displayMsg = t.proxyOnMsg;
-                } else if (msg.includes('已关闭代理') && t && t.proxyOffMsg) {
-                    displayMsg = t.proxyOffMsg;
+    // 测验交互逻辑 
+    function initQuiz() {
+        const btns = document.querySelectorAll('.quiz-btn');
+        const feedbackDiv = document.getElementById('quizFeedback');
+        if (!feedbackDiv) return;
+        btns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const answer = btn.getAttribute('data-answer');
+                if (answer === 'correct') {
+                    feedbackDiv.innerHTML = '❌ 错误！千万不要提供验证码！验证码相当于取款密码，官方客服不会索要验证码。正确做法是挂断并通过官方渠道核实。 ✅ 你已正确选择了理性行为？ 实际上安全做法是挂断并自行联系官方客服确认。';
+                    feedbackDiv.style.background = '#fee2e2';
+                    feedbackDiv.style.color = '#991b1b';
+                } else if (answer === 'wrong') {
+                    feedbackDiv.innerHTML = '🎉 回答正确！挂断电话并通过官方APP或网站核实订单信息，绝不私下转账或给验证码。你反诈意识很强！继续扩散给亲友。';
+                    feedbackDiv.style.background = '#dcfce7';
+                    feedbackDiv.style.color = '#166534';
+                } else if (answer === 'warning') {
+                    feedbackDiv.innerHTML = '⚠️ 危险行为！点击链接或提供银行卡会遭遇钓鱼诈骗，资金被盗风险极高！务必记住：绝不点击陌生链接，退款只在官方平台原路返回。';
+                    feedbackDiv.style.background = '#ffedd5';
+                    feedbackDiv.style.color = '#9a3412';
                 }
-                toastMsgSpan.innerText = displayMsg;
-                toastEl.style.display = 'flex';
-                toastEl.style.animation = 'none';
-                toastEl.offsetHeight;
-                toastEl.style.animation = 'toastIn 0.35s ease-out';
-                clearTimeout(toastEl._timeout);
-                toastEl._timeout = setTimeout(() => { toastEl.style.display = 'none'; }, 4000);
-            }
-
-            function getProxiedUrl(originalUrl) {
-                if (!proxyEnabled) return originalUrl;
-                try {
-                    const url = new URL(originalUrl);
-                    return PROXY_SERVER + url.host + url.pathname + url.search;
-                } catch (e) {
-                    return originalUrl;
-                }
-            }
-
-            function extractScoreFromTitle(title) {
-                const patterns = [
-                    /(\d+)\s*[-:]\s*(\d+)/,
-                    /(\d+)–(\d+)/,
-                    /(\d+)\s*vs\s*\d+/i
-                ];
-                for (let p of patterns) {
-                    const match = title.match(p);
-                    if (match && match[1] && match[2]) return `${match[1]} - ${match[2]}`;
-                }
-                return null;
-            }
-
-            function getDefaultLogo(channelName) {
-                const name = channelName.toLowerCase();
-                if (name.includes('cctv5')) return 'https://upload.wikimedia.org/wikipedia/zh/4/4e/CCTV-5_logo.png';
-                if (name.includes('咪咕')) return 'https://img.alicdn.com/imgextra/i3/6000000007344/O1CN01KjR1jT24CxJ6XoFz7_!!6000000007344-0-tps-200-200.jpg';
-                if (name.includes('腾讯')) return 'https://mat1.gtimg.com/www/images/qq2012/qqlogo_1x.png';
-                if (name.includes('爱奇艺')) return 'https://www.iqiyipic.com/common/fix/site-v4/iQIYIlogo-white.png';
-                if (name.includes('纬来')) return 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/VL_Sport_logo.svg/200px-VL_Sport_logo.svg.png';
-                return 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 fill=%27%23f5b81b%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27white%27%3E📺%3C/text%3E%3C/svg%3E';
-            }
-
-            function parseM3U(content) {
-                const lines = content.split(/\r?\n/);
-                const result = [];
-                let currentExtinf = null;
-                for (let i = 0; i < lines.length; i++) {
-                    const line = lines[i].trim();
-                    if (line.startsWith('#EXTINF:')) {
-                        const info = line.substring(8);
-                        const commaIdx = info.lastIndexOf(',');
-                        let title = commaIdx !== -1 ? info.substring(commaIdx + 1) : info;
-                        title = title.trim() || '未知频道';
-                        let logo = null;
-                        let groupTitle = null;
-                        const logoMatch = info.match(/tvg-logo="([^"]*)"/);
-                        if (logoMatch && logoMatch[1].startsWith('http')) logo = logoMatch[1];
-                        const groupMatch = info.match(/group-title="([^"]*)"/);
-                        if (groupMatch) groupTitle = groupMatch[1];
-                        currentExtinf = { title, logo, groupTitle };
-                    } else if (line && !line.startsWith('#') && currentExtinf) {
-                        if (line.startsWith('http')) {
-                            result.push({
-                                title: currentExtinf.title,
-                                url: line,
-                                logo: currentExtinf.logo || getDefaultLogo(currentExtinf.title),
-                                group: currentExtinf.groupTitle || null,
-                                score: extractScoreFromTitle(currentExtinf.title)
-                            });
-                        }
-                        currentExtinf = null;
-                    }
-                }
-                return result;
-            }
-
-            function sortChannelsWeilaiLast(rawChannels) {
-                const weilai = [],
-                    others = [];
-                rawChannels.forEach(ch => {
-                    if (ch.title.toLowerCase().includes('纬来') || ch.title.includes('纬來')) weilai.push(ch);
-                    else others.push(ch);
-                });
-                return [...others, ...weilai];
-            }
-
-            function stopAllRecoveryTimers() {
-                if (stallRecoveryTimer) { clearTimeout(stallRecoveryTimer);
-                    stallRecoveryTimer = null; }
-                if (errorRecoveryTimer) { clearTimeout(errorRecoveryTimer);
-                    errorRecoveryTimer = null; }
-                if (heartbeatInterval) { clearInterval(heartbeatInterval);
-                    heartbeatInterval = null; }
-            }
-
-            function destroyCurrentPlayer() {
-                stopAllRecoveryTimers();
-                if (currentVideoElement) {
-                    currentVideoElement.pause();
-                    currentVideoElement.src = '';
-                    currentVideoElement.load();
-                    currentVideoElement.removeAttribute('src');
-                    if (currentVideoElement.parentNode) {
-                        currentVideoElement.parentNode.removeChild(currentVideoElement);
-                    }
-                    currentVideoElement = null;
-                }
-                if (embeddedContainer) {
-                    const oldVideo = embeddedContainer.querySelector('video');
-                    if (oldVideo && oldVideo !== currentVideoElement) {
-                        oldVideo.pause();
-                        oldVideo.src = '';
-                        oldVideo.load();
-                        oldVideo.removeAttribute('src');
-                        if (oldVideo.parentNode) oldVideo.parentNode.removeChild(oldVideo);
-                    }
-                    const oldIframe = embeddedContainer.querySelector('iframe');
-                    if (oldIframe) {
-                        oldIframe.src = '';
-                        if (oldIframe.parentNode) oldIframe.parentNode.removeChild(oldIframe);
-                    }
-                }
-                pendingUnmuteVideo = null;
-                isRecovering = false;
-            }
-
-            function silentReloadStream() {
-                if (isRecovering) return;
-                if (!currentChannel || !currentChannel.url) return;
-                isRecovering = true;
-                console.log('🔄 无痕自动恢复直播流...');
-                showToast('网络波动，正在自动恢复...', false);
-                const urlToReload = currentChannel.url;
-                destroyCurrentPlayer();
+                // 增加额外高亮提醒 
                 setTimeout(() => {
-                    embedStreamIntoPlayer(urlToReload);
-                    setTimeout(() => { isRecovering = false; }, 3000);
-                }, 600);
-            }
-
-            function setupHeartbeat(videoElement) {
-                let stallCount = 0;
-                let lastCheckTime = 0;
-                heartbeatInterval = setInterval(() => {
-                    if (!videoElement || !videoElement.parentNode) {
-                        if (heartbeatInterval) clearInterval(heartbeatInterval);
-                        return;
+                    if (answer !== 'wrong') {
+                        // 再次加强正确引导 显示反诈小贴士
+                        if(answer !== 'correct'){
+                            feedbackDiv.innerHTML += '<br>📢 反诈小贴士：凡是主动来电退款索要验证码/银行卡信息，一律是诈骗！';
+                        }else{
+                            feedbackDiv.innerHTML += '<br>📢 正确的做法：挂断 → 官方核实 → 拒绝任何私下转账。';
+                        }
+                    }else{
+                        feedbackDiv.innerHTML += '<br>⭐ 您做出了最安全的判断！警惕性一流！';
                     }
-                    const readyState = videoElement.readyState;
-                    const networkState = videoElement.networkState;
-                    const currentTime = videoElement.currentTime;
-                    const isStalled = (readyState < 2 && networkState === 2 && !videoElement.ended && !videoElement
-                        .paused);
-                    const isDisconnected = (networkState === 3 && readyState < 1);
-                    const isFrozen = (currentTime === lastCheckTime && readyState >= 2 && !videoElement.paused &&
-                        !videoElement.ended);
+                }, 10);
+            });
+        });
+    }
 
-                    if (isStalled || isFrozen) {
-                        stallCount++;
-                        if (stallCount >= 3) {
-                            console.warn('检测到播放卡顿/停滞，触发自动恢复');
-                            stallCount = 0;
-                            silentReloadStream();
-                        }
-                    } else {
-                        stallCount = Math.max(0, stallCount - 1);
-                    }
+    // 横幅动态警示轮换 (增加逼真感)
+    let alertIndex = 0;
+    const alertsArray = [
+        "⚠️ 紧急预警：“Facetime”来电冒充金融客服，以关闭微粒贷/借呗为由诈骗，切勿共享屏幕！",
+        "🚨 反诈提示：“约炮+刷单”连环套，先诱导充值会员再称操作失误，近期高发！",
+        "📣 重要提醒：凡称“您的快递丢失，双倍赔付”要求下载会议软件，都是诈骗！",
+        "🔔 守护钱袋子：陌生人要求屏幕共享+网贷转账——立即挂断并报警！",
+    ];
+    function rotateAlert() {
+        const bannerDiv = document.querySelector('.alert-banner .alert-text');
+        if (bannerDiv) {
+            alertIndex = (alertIndex + 1) % alertsArray.length;
+            const newMsg = alertsArray[alertIndex];
+            // 保留里面span图标
+            bannerDiv.innerHTML = `<span>⚠️</span> ${newMsg}`;
+        }
+    }
+    // 每8秒更换一次警示语
+    let alertInterval;
 
-                    if (isDisconnected && !isRecovering) {
-                        console.warn('检测到网络断开/黑屏状态，触发自动恢复');
-                        silentReloadStream();
-                    }
-
-                    lastCheckTime = currentTime;
-                }, 7000);
-            }
-
-            function tryUnmuteOnInteraction() {
-                if (pendingUnmuteVideo && pendingUnmuteVideo.muted) {
-                    pendingUnmuteVideo.muted = false;
-                    pendingUnmuteVideo.play().catch(() => {});
-                    pendingUnmuteVideo = null;
-                    showToast('🔊 声音已解锁', false);
-                }
-            }
-
-            function embedStreamIntoPlayer(url) {
-                if (!url) { showToast('播放地址无效');
-                    return false; }
-                destroyCurrentPlayer();
-                const container = embeddedContainer;
-                if (!container) return false;
-                container.innerHTML = '';
-
-                const finalUrl = getProxiedUrl(url);
-                const lowerUrl = finalUrl.toLowerCase();
-
-                if (lowerUrl.includes('.m3u8') || lowerUrl.includes('.mp4') || lowerUrl.match(/\.(ts|m3u8)(\?|$)/i)) {
-                    const videoElement = document.createElement('video');
-                    videoElement.controls = true;
-                    videoElement.autoplay = true;
-                    videoElement.playsInline = true;
-                    videoElement.setAttribute('playsinline', '');
-                    videoElement.setAttribute('webkit-playsinline', '');
-                    videoElement.setAttribute('x5-video-player-type', 'h5');
-                    videoElement.setAttribute('x5-video-player-fullscreen', 'false');
-                    videoElement.setAttribute('x5-video-orientation', 'portrait');
-                    videoElement.style.width = '100%';
-                    videoElement.style.height = '100%';
-                    videoElement.style.objectFit = 'contain';
-                    videoElement.style.backgroundColor = '#000';
-                    videoElement.style.borderRadius = 'inherit';
-                    videoElement.crossOrigin = 'anonymous';
-                    videoElement.preload = 'auto';
-
-                    if (isMobileDevice()) {
-                        videoElement.muted = true;
-                        pendingUnmuteVideo = videoElement;
-                        if (!userHasInteracted) {
-                            const t = translations[currentLang];
-                            showToast(t ? t.tapUnmute : '📱 点击屏幕任意位置解锁声音', false);
-                        }
-                    }
-
-                    const source = document.createElement('source');
-                    source.src = finalUrl;
-                    source.type = lowerUrl.includes('.m3u8') ? 'application/vnd.apple.mpegurl' : 'video/mp4';
-                    videoElement.appendChild(source);
-                    container.appendChild(videoElement);
-                    currentVideoElement = videoElement;
-
-                    let errorCount = 0;
-                    const handleError = (e) => {
-                        errorCount++;
-                        const mediaError = videoElement.error;
-                        const errorCode = mediaError ? mediaError.code : 'unknown';
-                        console.warn('视频错误 code:', errorCode, 'count:', errorCount);
-                        if (errorCount <= 2 && !isRecovering) {
-                            showToast(`连接异常，尝试重连 (${errorCount}/2)...`, false);
-                            if (errorRecoveryTimer) clearTimeout(errorRecoveryTimer);
-                            errorRecoveryTimer = setTimeout(() => {
-                                if (videoElement && videoElement.parentNode && currentChannel) {
-                                    silentReloadStream();
-                                }
-                            }, 2500);
-                        } else if (errorCount > 2 && !isRecovering) {
-                            showToast('播放源异常，尝试自动切换线路', false);
-                            silentReloadStream();
-                        }
-                    };
-                    videoElement.addEventListener('error', handleError);
-
-                    videoElement.addEventListener('canplay', () => {
-                        const t = translations[currentLang];
-                        streamStateBadge.innerHTML = t ? t.streamSmooth : '🎬 流畅播放';
-                        if (heartbeatInterval) clearInterval(heartbeatInterval);
-                        setupHeartbeat(videoElement);
-                    });
-
-                    videoElement.addEventListener('loadedmetadata', () => {
-                        if (isMobileDevice() && videoElement.muted && pendingUnmuteVideo === videoElement &&
-                            userHasInteracted) {
-                            videoElement.muted = false;
-                            pendingUnmuteVideo = null;
-                        }
-                    });
-
-                    videoElement.play().catch(e => {
-                        console.warn('自动播放被阻止', e.message);
-                        const t = translations[currentLang];
-                        if (isMobileDevice() && videoElement.muted) {
-                            streamStateBadge.innerHTML = '🔇 静音播放中';
-                        } else {
-                            showToast(t ? t.needManualPlay : '请手动点击播放', false);
-                            streamStateBadge.innerHTML = t ? t.needManualPlay : '🔊 需手动播放';
-                        }
-                    });
-
-                    const cleanup = () => {
-                        videoElement.removeEventListener('error', handleError);
-                    };
-                    videoElement.addEventListener('play', cleanup, { once: true });
-                    videoElement.addEventListener('playing', () => {
-                        if (isMobileDevice() && userHasInteracted && videoElement.muted && pendingUnmuteVideo ===
-                            videoElement) {
-                            videoElement.muted = false;
-                            pendingUnmuteVideo = null;
-                        }
-                    }, { once: true });
-
-                    return true;
-                } else if (url.includes('.pl') || url.includes('youtube.com/embed') || url.includes('player') || url
-                    .includes('iframe')) {
-                    const iframeElement = document.createElement('iframe');
-                    iframeElement.src = finalUrl;
-                    iframeElement.allow =
-                        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
-                    iframeElement.allowFullscreen = true;
-                    iframeElement.style.width = '100%';
-                    iframeElement.style.height = '100%';
-                    iframeElement.style.border = 'none';
-                    iframeElement.style.borderRadius = 'inherit';
-                    iframeElement.loading = 'lazy';
-                    container.appendChild(iframeElement);
-                    return true;
+    // 一键举报按钮交互 模拟举报提示
+    function initReportButton() {
+        const reportBtn = document.getElementById('reportBtn');
+        if (reportBtn) {
+            reportBtn.addEventListener('click', () => {
+                // 展示举报指引模态框风格 (alert模拟，更符合纯前端)
+                const confirmAction = confirm("⚠️ 本页面为反诈公益宣传。如遇真实诈骗或可疑情形，请立即拨打反诈专线96110或110，并保存聊天/转账记录。\n是否确认打开本地反诈中心官方网站? (模拟跳转，实际展示引导)");
+                if (confirmAction) {
+                    alert("✅ 请尽快拨打96110报案，或者前往就近派出所。日常建议下载“国家反诈中心”APP并开启来电预警。\n(示意动作：在真实场景中请立即报警)");
+                    // 可选新窗口打开国家反诈宣传链接（不强制，展示公益），出于友好打开一个反诈官网(无商业外链)
+                    window.open("https://www.12321.cn/", "_blank"); // 12321网络不良与垃圾信息举报受理中心，合法公益。
                 } else {
-                    const fallbackDiv = document.createElement('div');
-                    fallbackDiv.className = 'player-placeholder';
-                    fallbackDiv.innerHTML =
-                        `<span>⚠️ 该链接不支持内嵌播放</span><span class="placeholder-hint">点击下方按钮新窗口观看</span><button id="fallbackOpenBtn" style="margin-top:10px; background:var(--accent-gold); border:none; padding:8px 16px; border-radius:40px; font-weight:700; cursor:pointer; color:#0f172a; letter-spacing:0.03em; touch-action:manipulation;">在新窗口播放</button>`;
-                    container.appendChild(fallbackDiv);
-                    document.getElementById('fallbackOpenBtn')?.addEventListener('click', () => { window.open(
-                            finalUrl, '_blank'); });
-                    return false;
-                }
-            }
-
-            function showPlaceholder() {
-                destroyCurrentPlayer();
-                const t = translations[currentLang];
-                embeddedContainer.innerHTML =
-                    `<div class="player-placeholder"><span>⚽🏆</span><span>${t ? t.clickPlay : '点击「立即观看」或频道▶️'}</span><span class="placeholder-hint">${t ? t.directPlay : '内嵌直播将直接播放'}</span></div>`;
-                currentVideoElement = null;
-            }
-
-            function updateCurrentUI(channel) {
-                const t = translations[currentLang];
-                if (channel) {
-                    currentLogoImg.src = channel.logo;
-                    currentChannelLabel.innerText = channel.title;
-                    streamStateBadge.innerHTML = t ? t.liveReady : '🎬 内嵌直播 · 就绪';
-                    playNowBtn.disabled = false;
-                } else {
-                    currentLogoImg.src =
-                        'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 fill=%27%23333%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 fill=%27white%27%3E📡%3C/text%3E%3C/svg%3E';
-                    currentChannelLabel.innerText = t ? t.noChannel : '无频道';
-                    playNowBtn.disabled = true;
-                    streamStateBadge.innerHTML = t ? t.noSignal : '⚠️ 无信号';
-                }
-            }
-
-            function toggleGroup(groupName, headerElement) {
-                const isCollapsed = groupCollapseState.get(groupName) || false;
-                groupCollapseState.set(groupName, !isCollapsed);
-                if (headerElement) {
-                    if (!isCollapsed) headerElement.classList.add('collapsed');
-                    else headerElement.classList.remove('collapsed');
-                    const channelsDiv = headerElement.nextElementSibling;
-                    if (channelsDiv && channelsDiv.classList.contains('category-channels')) {
-                        if (!isCollapsed) {
-                            channelsDiv.style.maxHeight = '0px';
-                            channelsDiv.classList.add('collapsed');
-                        } else {
-                            channelsDiv.style.maxHeight = channelsDiv.scrollHeight + 'px';
-                            channelsDiv.classList.remove('collapsed');
-                        }
-                    }
-                }
-            }
-
-            function renderChannelList() {
-                const t = translations[currentLang];
-                if (!channels.length) {
-                    channelsContainer.innerHTML =
-                        `<div style="text-align:center; padding:2rem;">${t ? t.noSource : '暂无直播源，请刷新'}</div>`;
-                    channelTotalCountSpan.innerText = '(0)';
-                    return;
-                }
-                channelTotalCountSpan.innerText = `(${channels.length})`;
-                const activeId = currentChannel ? currentChannel.url : null;
-                const groups = new Map();
-                for (const ch of channels) {
-                    const groupName = ch.group && ch.group.trim() !== '' ? ch.group : '其他赛事';
-                    if (!groups.has(groupName)) groups.set(groupName, []);
-                    groups.get(groupName).push(ch);
-                }
-                let html = '';
-                for (const [groupName, groupChannels] of groups.entries()) {
-                    const isCollapsed = groupCollapseState.get(groupName) || false;
-                    const collapsedClass = isCollapsed ? 'collapsed' : '';
-                    const iconClass = isCollapsed ? '▶' : '▼';
-                    html +=
-                        `<div class="category-group" data-group-name="${escapeHtml(groupName)}">
-              <div class="category-header ${collapsedClass}" data-group="${escapeHtml(groupName)}">
-                <span>${escapeHtml(groupName)}</span>
-                <span class="toggle-icon">${iconClass}</span>
-              </div>
-              <div class="category-channels ${collapsedClass}" style="${isCollapsed ? 'max-height:0px;' : ''}">`;
-                    for (const ch of groupChannels) {
-                        const globalIdx = channels.findIndex(c => c.url === ch.url);
-                        const scoreHtml = ch.score ? `<span class="score-badge">${ch.score}</span>` : '';
-                        html += `
-                <div class="channel-item ${activeId === ch.url ? 'active' : ''}" data-index="${globalIdx}">
-                  <img class="item-logo" src="${ch.logo}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 fill=%27%23f5b81b%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27white%27%3E📺%3C/text%3E%3C/svg%3E'">
-                  <div class="item-info">
-                    <div class="item-title">${escapeHtml(ch.title)} ${scoreHtml}</div>
-                    <div class="item-status"><span class="live-dot"></span> ${t ? t.embeddedSupport : '内嵌支持'}</div>
-                  </div>
-                  <div class="play-icon-small" data-playidx="${globalIdx}">▶</div>
-                </div>
-              `;
-                    }
-                    html += `</div></div>`;
-                }
-                channelsContainer.innerHTML = html;
-                document.querySelectorAll('.category-header').forEach(header => {
-                    const groupName = header.getAttribute('data-group');
-                    header.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        toggleGroup(groupName, header);
-                    });
-                });
-                document.querySelectorAll('.channel-item').forEach(el => {
-                    const idx = el.dataset.index;
-                    if (idx !== undefined) {
-                        el.addEventListener('click', (e) => {
-                            if (e.target.classList.contains('play-icon-small')) return;
-                            selectChannelByIdx(parseInt(idx));
-                        });
-                        const playBtn = el.querySelector('.play-icon-small');
-                        if (playBtn) {
-                            playBtn.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                const pIdx = playBtn.dataset.playidx;
-                                if (pIdx !== undefined) playChannelByIdx(parseInt(pIdx));
-                            });
-                        }
-                    }
-                });
-                document.querySelectorAll('.category-channels').forEach(div => {
-                    if (div.style.maxHeight === '' && !div.classList.contains('collapsed')) {
-                        div.style.maxHeight = div.scrollHeight + 'px';
-                    }
-                });
-            }
-
-            function escapeHtml(str) {
-                return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;';
-                    if (m === '<') return '&lt;';
-                    if (m === '>') return '&gt;'; return m; });
-            }
-
-            function selectChannelByIdx(index) {
-                if (channels[index]) {
-                    currentChannel = channels[index];
-                    updateCurrentUI(currentChannel);
-                    renderChannelList();
-                    showPlaceholder();
-                }
-            }
-
-            function playChannelByIdx(index) {
-                if (channels[index]) {
-                    currentChannel = channels[index];
-                    updateCurrentUI(currentChannel);
-                    renderChannelList();
-                    embedStreamIntoPlayer(currentChannel.url);
-                }
-            }
-
-            async function loadChannelsFromUrl(url) {
-                if (isLoading) return;
-                isLoading = true;
-                refreshListBtn.disabled = true;
-                const t = translations[currentLang];
-                channelsContainer.innerHTML =
-                    `<div style="text-align:center; padding:2rem;"><div class="live-dot" style="margin:0 auto; width:10px;height:10px;"></div> ${t ? t.loadingChannels : '加载直播源...'}</div>`;
-                try {
-                    const finalUrl = url + (url.includes('?') ? '&' : '?') + '_ts=' + Date.now();
-                    const resp = await fetch(finalUrl, { headers: { 'Accept': 'application/vnd.apple.mpegurl,*/*' },
-                        cache: 'no-store' });
-                    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-                    const text = await resp.text();
-                    let parsed = parseM3U(text);
-                    if (parsed.length === 0) throw new Error('未找到频道');
-                    parsed = sortChannelsWeilaiLast(parsed);
-                    channels = parsed;
-                    groupCollapseState.clear();
-                    if (!currentChannel || !channels.find(c => c.url === currentChannel?.url)) {
-                        currentChannel = channels[0];
-                    }
-                    updateCurrentUI(currentChannel);
-                    renderChannelList();
-                    showPlaceholder();
-                    if (currentChannel && currentChannel.url) {
-                        setTimeout(() => {
-                            embedStreamIntoPlayer(currentChannel.url);
-                        }, isMobileDevice() ? 800 : 500);
-                    }
-                    showToast(`✅ 加载成功 (${channels.length}个频道)`, false);
-                } catch (err) {
-                    console.error(err);
-                    showToast(`加载失败: ${err.message}`);
-                    channels = [];
-                    currentChannel = null;
-                    updateCurrentUI(null);
-                    renderChannelList();
-                    showPlaceholder();
-                } finally {
-                    isLoading = false;
-                    refreshListBtn.disabled = false;
-                }
-            }
-
-            function refreshAll() {
-                destroyCurrentPlayer();
-                loadChannelsFromUrl(M3U_API_URL).catch(() => { loadChannelsFromUrl(FALLBACK_M3U_URL); });
-            }
-
-            function toggleProxy() {
-                proxyEnabled = !proxyEnabled;
-                const t = translations[currentLang];
-                if (proxyEnabled) {
-                    proxyToggleText.innerText = t ? t.proxyOn : '代理:开';
-                    proxyToggleBtn.classList.add('active-pill');
-                    showToast(t ? t.proxyOnMsg : '已开启代理加速', false);
-                } else {
-                    proxyToggleText.innerText = t ? t.proxyOff : '代理:关';
-                    proxyToggleBtn.classList.remove('active-pill');
-                    showToast(t ? t.proxyOffMsg : '已关闭代理', false);
-                }
-                if (currentVideoElement && currentChannel) {
-                    silentReloadStream();
-                }
-            }
-
-            let currentTheme = 'dark';
-
-            function applyTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                if (theme === 'light') { themeTextMini.innerText = '浅色';
-                    themeIconSpan.innerText = '☀️'; } else { themeTextMini.innerText = '深色';
-                    themeIconSpan.innerText = '🌙'; }
-                currentTheme = theme;
-                localStorage.setItem('wc_theme', theme);
-            }
-
-            function toggleTheme() { const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                applyTheme(newTheme); }
-            const savedTheme = localStorage.getItem('wc_theme');
-            if (savedTheme) applyTheme(savedTheme);
-            else applyTheme('dark');
-
-            const savedLang = localStorage.getItem('wc_lang');
-            if (savedLang && translations[savedLang]) setLanguage(savedLang);
-            else setLanguage('zh-CN');
-
-            langSelectorBtn.addEventListener('click', (e) => { e.stopPropagation();
-                langSelectorBtn.classList.toggle('active'); });
-            document.querySelectorAll('.lang-option').forEach(opt => {
-                opt.addEventListener('click', (e) => { e.stopPropagation(); const lang = opt.getAttribute(
-                        'data-lang'); if (lang) setLanguage(lang);
-                    langSelectorBtn.classList.remove('active'); });
-            });
-            document.addEventListener('click', () => { langSelectorBtn.classList.remove('active'); });
-
-            playNowBtn.addEventListener('click', () => {
-                if (currentChannel && currentChannel.url) embedStreamIntoPlayer(currentChannel.url);
-                else showToast('暂无可用频道');
-            });
-            refreshListBtn.addEventListener('click', refreshAll);
-            themeToggleBtn.addEventListener('click', toggleTheme);
-            proxyToggleBtn.addEventListener('click', toggleProxy);
-
-            document.addEventListener('click', function globalInteractionHandler() {
-                if (!userHasInteracted) {
-                    userHasInteracted = true;
-                    tryUnmuteOnInteraction();
-                }
-            }, { once: false, passive: true });
-
-            document.addEventListener('touchstart', function touchInteractionHandler() {
-                if (!userHasInteracted) {
-                    userHasInteracted = true;
-                    tryUnmuteOnInteraction();
-                }
-            }, { once: false, passive: true });
-
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible' && currentVideoElement && currentChannel && !
-                    isRecovering) {
-                    if (currentVideoElement.readyState < 2 || currentVideoElement.paused) {
-                        currentVideoElement.play().catch(() => {});
-                    }
-                    if (currentVideoElement.networkState === 3) {
-                        silentReloadStream();
-                    }
+                    alert("请务必提高警惕！不轻信任何转账借口。牢记96110反诈专线。");
                 }
             });
+        }
+    }
 
-            window.addEventListener('resize', () => {
-                const wasMobile = pendingUnmuteVideo && !userHasInteracted;
-                if (wasMobile && !isMobileDevice() && pendingUnmuteVideo) {
-                    pendingUnmuteVideo.muted = false;
-                    pendingUnmuteVideo = null;
-                }
+    // 交互优化: 点击警示横幅也能有反应（增强防范）
+    function bindBannerClick() {
+        const banner = document.querySelector('.alert-banner');
+        if(banner){
+            banner.addEventListener('click', () => {
+                alert("📢 最新反诈快报：近期AI换脸诈骗频发，视频核实要要求对方做面部动作！任何线上借钱必须多重渠道确认。");
             });
+        }
+    }
 
-            refreshAll();
-            setInterval(() => {
-                if (!isLoading) loadChannelsFromUrl(M3U_API_URL).catch(() => loadChannelsFromUrl(
-                    FALLBACK_M3U_URL));
-            }, 10 * 60 * 1000);
-        })();
-    </script>
+    // 给统计数据卡片增加趣味提示
+    function bindStatClick() {
+        const stats = document.querySelectorAll('.stat-card');
+        stats.forEach(stat => {
+            stat.addEventListener('click', () => {
+                // 轻提示浮动效果
+                const toastMsg = document.createElement('div');
+                toastMsg.innerText = '📊 全民反诈，共建平安！数据持续更新中';
+                toastMsg.style.position = 'fixed';
+                toastMsg.style.bottom = '20px';
+                toastMsg.style.left = '50%';
+                toastMsg.style.transform = 'translateX(-50%)';
+                toastMsg.style.backgroundColor = '#1f2937';
+                toastMsg.style.color = 'white';
+                toastMsg.style.padding = '8px 18px';
+                toastMsg.style.borderRadius = '40px';
+                toastMsg.style.fontSize = '0.8rem';
+                toastMsg.style.zIndex = '999';
+                toastMsg.style.opacity = '0.9';
+                document.body.appendChild(toastMsg);
+                setTimeout(() => toastMsg.remove(), 1800);
+            });
+        });
+    }
+
+    // 渲染挂载全部
+    function init() {
+        renderScamCards();
+        initStatsAnimation();
+        initQuiz();
+        initReportButton();
+        bindBannerClick();
+        bindStatClick();
+        // 轮换警示语并设置
+        rotateAlert(); // 初始设置一条
+        alertInterval = setInterval(rotateAlert, 8000);
+    }
+
+    // 页面关闭前清除定时器 (可选)
+    window.addEventListener('beforeunload', () => {
+        if (alertInterval) clearInterval(alertInterval);
+    });
+
+    init();
+</script>
 </body>
 </html>
